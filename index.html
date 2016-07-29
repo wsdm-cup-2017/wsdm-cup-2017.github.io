@@ -1,1 +1,190 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WSDM Cup 2017</title> 
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/prettify.css" rel="stylesheet" />
+
+<style>
+.navbar .navbar-nav {
+  font-weight: bold;
+}
+</style>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="img/icon-wsdm.png">
+<!--
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+-->
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom:0px;">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">WSDM Cup 2017</a>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="about.html">Organization</a></li>
+      <li><a href="about.html#important-dates">Important Dates</a></li>
+      <!--<li><a href="proceedings.html">Proceedings</a></li>-->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="wikidata-vandalism-detection.html">Wikidata Vandalism Detection</a></li>
+          <li><a href="wikidata-entity-search.html">Wikidata Entity Search</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>WSDM Cup 2017</h1>
+        <p>This is the 2nd WSDM Cup on knowledge base quality and search. It will be held as part of the <a href="http://www.wsdm-conference.org/2017/" target="_blank">WSDM conference</a> in Cambridge, UK, on February 6-10, 2017. Evaluations will commence <a href="about.html#important-dates">from August till December</a>. We invite you to take part in any of the two tasks shown below.</p>
+        <p>
+          <a class="btn btn-default btn-large" href="about.html">Learn more »</a>
+          <a class="btn btn-primary btn-large" href="https://goo.gl/forms/JaVQwFFewLtVFCik2" target="_blank">Register now »</a>
+          <span class="badge"><span id="registered-total">0</span> already signed up</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="padding-top:20px;">
+<!-- Tasks -->
+<div class="row">
+  <div class="col-md-6">
+    <h3>Wikidata Vandalism Detection</h3>
+    <p>Given a Wikidata revision, is it damaging?</p>
+    <p>This task is about detecting vandalism as well as all other kinds of damaging edits to Wikidata. A vandalism detector for Wikidata protects its integrity much the same as they do on Wikipedia, only more so: protecting Wikidata's integrity also protects that of all information systems making use of Wikidata.</p>
+    <p><a class="btn btn-default" href="wikidata-vandalism-detection.html">Learn more »</a></p>
+ </div>
+  <div class="col-md-6">
+    <h3>Wikidata Entity Search</h3>
+    <p>Given type-like Wikidata triples, compute the degree to which the subject belongs to the type.</p>
+    <p>This task tackles a fundamental problem of search in knowledge bases, namely to decide which triples of a subject are more relevant to it compared to others. The task will address a select set of type-like relations, including "occupation" and "country of citizenship".</p>
+    <p><a class="btn btn-default" href="wikidata-entity-search.html">Learn more »</a></p>
+  </div>
+</div>
+
+<!-- Keynotes -->
+<!--
+<div class="row">
+  <div class="col-md-12">
+    <h2>Keynote</h2>
+  </div>
+  <div class="col-xs-12">
+    <div class="pull-left"><img class="img-rounded" style="max-height:140px;margin:5px;" src="img/rui.jpg" alt="Tommaso Fornaciari"></div>
+    <h4 class="media-heading">Detecting translingual plagiarism: A forensic linguistic contribution to computational processing</h4>
+    <p><a href="http://www.linguisticaforense.pt/" target="_blank">Rui Sousa-Silva</a><br/>
+    <span style="font-size:10pt">Universidade do Porto</span></p>
+    <p>Plagiarism detection has evolved significantly in recent years, partly in response to the media attention attracted by high-profile plagiarism cases involving journalists and politicians. A culture of control has been establishing itself to guarantee integrity and honesty in all areas related to copyright and authorship, including implementation of policies, codes of conduct, tariffs of penalties, and matching detection software. The latter has dramatically improved alongside the technological developments over the years. Currently instances of linguistic plagiarism can easily be matched to the original, while pointing out differences between the plagiarised and the plagiarising texts. These methods work particularly well with same language texts; however, systematically detecting translingual plagiarism - i.e. where a derivative text copies from a source in another language without attribution - remains a problem area. This is especially so because the possibilities of combining language pairs are immense, thus requiring an enormous data processing power. This session presents illustrative cases of translingual plagiarism and discusses some of the approaches adopted by forensic linguists to investigate and prove that a certain translated text is an instance of plagiarism. The keynote concludes by encouraging a discussion of computational approaches that can be adopted to assist forensic linguists in their own investigation.</p>
+    <p><em>Rui Sousa-Silva is assistant professor of the Faculty of Arts and post-doctoral researcher at the Linguistics Centre (CLUP) of the University of Porto, where he is currently conducting his research into Forensic Linguistics and Cybercrime. He has a PhD in Applied Linguistics from Aston University (Birmingham, UK), where he submitted his thesis on Forensic Linguistics: ‘Detecting Plagiarism in the Forensic Linguistics Turn’. He studied cross-cultural attitudes to plagiarism, and proposed an original approach to translingual plagiarism detection. He also authored and co-authored several papers on (computational) authorship analysis, and is co-editor with Professor Malcolm Coulthard of the recently founded international bilingual biennial journal Language and Law / Linguagem e Direito.</em></p>
+  </div>
+</div>
+-->
+
+
+<div class="row" style="padding-top:60px;">
+  <div class="col-xs-12 col-sm-4 col-md-4"><a href="http://is.upb.de/" target="_blank" class="thumbnail" style="border:none;min-height:75px;"><img src="img/logo-paderborn-university.png" alt="Paderborn University logo" class="img-responsive" style="margin-top:-23px;max-height:80px;"></a></div>
+  <div class="col-xs-12 col-sm-4 col-md-4"><a href="https://ad.informatik.uni-freiburg.de/" target="_blank" class="thumbnail" style="border:none;min-height:75px;"><img src="img/logo-uni-freiburg.png" alt="Albert-Ludwigs-Universität Freiburg logo" class="img-responsive" style="margin-top:-23px;max-height:150px;"></a></div>
+  <div class="col-xs-12 col-sm-4 col-md-4"><a href="http://www.webis.de/" target="_blank" class="thumbnail" style="border:none;min-height:75px;"><img src="img/logo-bauhaus-universitaet-weimar.png" alt="Bauhaus-Universtät Weimar logo" class="img-responsive" style="max-height:60px;"></a></div>
+</div>
+
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $('.jumbotron').tooltip({
+    selector: "[data-toggle=tooltip]",
+    container: "body"
+  })
+</script>
+<script src="js/prettify.js"></script>
+<script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()   
+    })
+  }(window.jQuery)
+</script>
+
+<!-- Update the registration statistics. -->
+<script type="text/javascript">
+  $.ajax({
+    url: "https://spreadsheets.google.com/feeds/cells/1iLuB6S8jzjmQ_cYsUl-nCl5Gnj4BaJfo-MKMc263u6k/2/public/basic?min-row=5&min-col=1&max-row=1&max-col=1&alt=json",
+    cache: false,
+    dataType: "json"
+  }).done(function(json) {
+    $(json["feed"]["entry"]).each(function() {
+      var title = this["title"]["$t"];
+      var content = this["content"]["$t"];
+      switch (title) {
+      case "A1":
+        switch (content) {
+        case "0":
+          $("#registered-total").parent().remove()
+          break;
+        default:
+          $("#registered-total").text(content)
+          break;
+        }
+        break;
+      case "A2":
+        $("#registered-wikidata-vandalism-detection").text(content)
+        break;
+      case "A3":
+        $("#registered-wikidata-entity-search").text(content)
+        break;
+      case "A4":
+        $("#registered-countries").text(content)
+        break;
+      }
+    });
+  });
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-19597677-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
+
