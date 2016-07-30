@@ -1,0 +1,24 @@
+{
+  "name": "wsdm-cup-17.github.io",
+  "version": "1.0.0",
+  "description": "Web pages of the WSDM Cup 2017.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsdm-cup-17/wsdm-cup-17.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wsdm-cup-17/wsdm-cup-17.github.io/issues"
+  },
+  "homepage": "https://github.com/wsdm-cup-17/wsdm-cup-17.github.io#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bootlint": "^0.10.1",
+    "grunt-html": "^8.0.2"
+  }
+}
