@@ -71,12 +71,16 @@
       <h1 id="task-description" class="page-header">
         Wikidata Vandalism Detection
       </h1>
+
+      <p><a href="https://www.wikidata.org/">Wikidata</a> is the new, large-scale knowledge base of the Wikimedia Foundation which can be edited by anyone. Its knowledge is increasingly used within Wikipedia as well as in all kinds of information systems, which imposes high demands on its integrity. Nevertheless, Wikidata frequently gets vandalized, exposing all its users to the risk of spreading vandalized and falsified information.</p>
+
       <div class="panel panel-default">
         <div class="panel-heading">Task</div>
         <div class="panel-body">
           <p>Given a Wikidata revision, compute a vandalism score denoting the likelihood of this revision beeing vandalism (or similarly damaging).</p>
         </div>
-  	</div>
+	  </div>
+	  
       <div class="panel panel-default">
   	  <div class="panel-heading">Training Corpus</div>
         <div class="panel-body">
@@ -87,7 +91,8 @@
           </p>
         </div>	  
       </div>
-  	<div class="panel panel-default">
+	  
+  	  <div class="panel panel-default">
         <div class="panel-heading">Output</div>
         <div class="panel-body">
           <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32:
@@ -104,6 +109,7 @@
           </table>
   	  </div>
     </div>
+	
     <div class="panel panel-default">
         <div class="panel-heading">Performance Measures</div>
         <div class="panel-body">
@@ -112,6 +118,7 @@
   		<p>For informational purposes, we might compute further evaluation measures such as PR-AUC and the runtime of the software.</p>
   	  </div>
     </div>
+	
     <div class="panel panel-default">
   	<div class="panel-heading">Test Corpus</div>
       <div class="panel-body">
@@ -123,6 +130,7 @@
           </p>-->
       </div>
     </div>
+	
     <div class="panel panel-default">
   	  <div class="panel-heading">Submission</div>
         <div class="panel-body">
@@ -136,6 +144,7 @@
           <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the PAN competition. We agree not to share your software with a third party or use it for other purposes than the PAN competition.</p>
         </div>
   	</div>
+	
   	<!--
   	<div class="panel panel-default">
         <div class="panel-heading">Results</div>
@@ -162,6 +171,7 @@
           </p>
         </div>
       </div>
+	  
       <div class="panel panel-default">
         <div class="panel-heading">Related Work</div>
         <div class="panel-body">
