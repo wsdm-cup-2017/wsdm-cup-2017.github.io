@@ -66,340 +66,163 @@
 
 <div class="container">
 
-<div class="row">
-  <div class="col-xs-12">
-    <h1 id="task-description" class="page-header">
-      Wikidata Vandalism Detection
-    </h1>
-    <p>Stay tuned for more details about this task.</p>
-  </div>
-</div>
-
-<!--
-<div class="row">
-  <div class="col-sm-6">
-    <h2 id="source-retrieval">Author Masking</h2>
-    <div class="panel panel-default">
-      <div class="panel-heading">Task</div>
-      <div class="panel-body">
-        <p>Given a document, paraphrase it so that its writing style does not match that of its original author, anymore.</p>
-      </ul>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 id="task-description" class="page-header">
+        Wikidata Vandalism Detection
+      </h1>
+      <div class="panel panel-default">
+        <div class="panel-heading">Task</div>
+        <div class="panel-body">
+          <p>Given a Wikidata revision, compute a vandalism score denoting the likelihood of this revision beeing vandalism (or similarly damaging).</p>
+        </div>
+  	</div>
+      <div class="panel panel-default">
+  	  <div class="panel-heading">Training Corpus</div>
+        <div class="panel-body">
+          <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.</p>
+          <p>
+  			The dataset will be published until September 1, 2016.
+            <!--<a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a> -->
+          </p>
+        </div>	  
       </div>
+  	<div class="panel panel-default">
+        <div class="panel-heading">Output</div>
+        <div class="panel-body">
+          <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32:
+  		
+  		<table class="table table-condensed rule"  style="font-size:small;">
+          <thead>
+          <tr><th>Revision Id</th><th>Vandalism Score</th></tr>
+          </thead>
+          <tbody>
+          <tr><td>123</td><td>0.95</td></tr>
+          <tr><td>124</td><td>0.30</td></tr>
+          <tr><td>125</td><td>12.e-5</td></tr>
+          </tbody>
+          </table>
+  	  </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">Training Corpus</div>
-      <div class="panel-body">
-        <p>To develop your software, we provide you with a training corpus that consists of documents that are to be obfuscated, and other documents from the same author.</p>
-        <p>
-          <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a>
-        </p>
-      </div>
+        <div class="panel-heading">Performance Measures</div>
+        <div class="panel-body">
+  		<p>For determining the winner, we will use ROC-AUC as primary evaluation measure.</p>
+  		
+  		<p>For informational purposes, we might compute further evaluation measures such as PR-AUC and the runtime of the software.</p>
+  	  </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">Output</div>
-      <div class="panel-body">
-        <p>For each document to be obfuscated, your software shall output a detailed list how each piece of original text has been paraphrased. The output shall be formatted using JSON as follows:</p>
-<pre class="prettyprint lang-json">
-[
-  {
-    "original": "The quick brown fox jumps over the lazy dog.",
-    "original-start-charpos": 10,
-    "original-end-charpos": 55,
-    "obfuscation": "Lazy lay the dog when an auburn fox quickly jumped over him.",
-    "obfuscation-id": 1
-  },
-  {
-    "original": "Squdgy fez, blank jimp crwth vox!",
-    "original-start-charpos": 56,
-    "original-end-charpos": 70,
-    "obfuscation": "A short brimless felt hat barely blocks out the sound of a Celtic violin!",
-    "obfuscation-id": 2
-  },
-  ...
-]
-</pre>
-        <p>The <code>original</code> must be reproduced exactly as it appears in the original document. It can be longer than a sentence, however, it should be less than about 50 words total.</p>
-        <p>The <code>original-start-charpos</code> shall mark the character position in the original document where the <code>original</code> string starts, and the  <code>original-end-charpos</code> the character position where the <code>original</code> ends. Keep in mind that some documents may contain UTF-8 characters when calculating the character position of the originals.</p>
-        <p>The <code>obfuscation-id</code> must be an <code>int</code> ranging from 1 to n, where n is the number of obfuscations.</p>
-        <p>The concatenation of all <code>obfuscation</code> entries shall form a coherent text that obfuscates the original text. The concatenation will be done in oder of ascending <code>obfuscation-id</code>.</p>
-        <p>JSON disallows certain special characters in strings (including line breaks). Please make sure to escape these characters in order to output valid JSON. Refer to the <a href="http://json.org/">JSON spec</a> for further details, or use a JSON library.</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Performance Measures</div>
-      <div class="panel-body">
-        <p>
-        We call an obfuscation software
-        <ul>
-          <li><em>safe</em>, if a forensic analysis does not reveal the original author of its obfuscated texts,</li>
-          <li><em>sound</em>, if its obufscated texts are textually entailed with their originals, and</li>
-          <li><em>sensible</em>, if its obfuscated texts are inconspicuous.</li>
-        </ul>
-        </p>
-        <p>These dimensions are orthogonal; an obfuscation software may meet any of them to various degrees of perfection.</p>
-        <p>The performance of an obfuscation software is measured 
-        <ul>
-          <li>using automatic authorship verifiers to measure safety, and</li>
-          <li>with manual peer-review to assess soundness and sensibleness.</li>
-        </ul>
-        </p>
-        <p>To measure safety we will use the following authorship verification software:
-        <ul>
-          <li>Caravel [<a href="https://github.com/pan-webis-de/caravel">code</a>] (best-performing approach at PAN 2015)</li>
-          <li>GLAD [<a href="https://github.com/pan-webis-de/glad">code</a>]</li>
-          <li>Authorid [<a href="https://github.com/pan-webis-de/authorid">code</a>]</li>
-          <li>AuthorIdentification-PFP [<a href="https://github.com/pan-webis-de/AuthorIdentification-PFP">code</a>]</li>
-        </ul>
-        </p>
-        <p>To measure soundness and sensibleness, obfuscations will be sampled and handed out to participants for peer-review.</p>
-        <p>Finally, we invite all participants to submit automatic performance measures (see the corresponding task Obfuscation Evaluation).</p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Test Corpus</div>
+  	<div class="panel-heading">Test Corpus</div>
       <div class="panel-body">
         <p>Once you finished tuning your approach to achieve satisfying performance on the training corpus, you should run your software on the test corpus.</p>
         <p>During the competition, the test corpus will not be released publicly. Instead, we ask you to submit your software for evaluation at our site as described below.</p>
         <p>After the competition, the test corpus is available including ground truth data. This way, you have all the necessities to evaluate your approach on your own, yet being comparable to those who took part in the competition.</p>
-        <p>
-          <a class="btn btn-default" target="_blank" href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan14/pan14-data/">Download corpus</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Submission</div>
-      <div class="panel-body">
-        <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
-        <pre class="prettyprint lang-c" style="overflow-x:auto">
-> mySoftware <b>-i</b> path/to/corpus <b>-o</b> path/to/output/directory
-</pre>
-        <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
-        <p><a class="btn btn-default" href="pan15-virtual-machine-user-guide.pdf">PAN Virtual Machine User Guide »</a></p>
-        <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
-        <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the PAN competition. We agree not to share your software with a third party or use it for other purposes than the PAN competition.</p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Results</div>
-      <div class="panel-body">
-        <p>The following table lists the performances achieved by the participating teams:</p>
-        <table class="table table-condensed rule" style="font-size:small;">
-        <thead>
-        <tr class="top"><th colspan="5" style="text-align:center">Source Retrieval Performance</th></tr>
-        <tr class="top2"><th colspan="2" style="text-align:center">Workload to 1st Detection</th><th colspan="2" style="text-align:center">Downloaded Sources</th><th>Team</th></tr>
-        <tr class="mid"><th>Queries</th><th>Downloads</th><th>Precision</th><th>Recall</th><th></th></tr>
-        </thead>
-        <tbody>
-        <tr><td> 54.5</td><td> 33.2</td><td>0.40</td><td>0.39</td><td>Victoria Elizalde<br/>Private, Argentina</td></tr>
-        <tr><td> 83.5</td><td>207.1</td><td>0.08</td><td>0.48</td><td>Leilei Kong, Yong Han, Zhongyuan Han, Haihao Yu, Qibo Wang, Tinglei Zhang , Haoliang Qi<br/>Heilongjiang Institute of Technology, China</td></tr>
-        <tr><td> 60.0</td><td> 38.8</td><td>0.38</td><td>0.51</td><td>Amit Prakash and Sujan kumar Saha<br/>Birla Institute of Technology, India</td></tr>
-        <tr><td> 19.5</td><td>237.3</td><td>0.08</td><td>0.40</td><td>Šimon Suchomel and Michal Brandejs<br/>Masaryk University, Czech Republic</td></tr>
-        <tr><td>117.1</td><td> 14.4</td><td>0.57</td><td>0.48</td><td>Kyle Williams, Hung-Hsuan Chen, and C. Lee Giles<br/>Pennsylvania State University, USA</td></tr>
-        <tr><td> 37.0</td><td> 18.6</td><td>0.54</td><td>0.45</td><td>Denis Zubarev° and Ilya Sochenkov*<br/>°Institute for Systems Analysis of Russian Academy of Sciences and *Peoples’ Friendship University of Russia, Russia</td></tr>
-        </tbody>
-        </table>
-        <p>A more detailed analysis of the retrieval performances can be found in the overview paper accompanying this task.</p>
-        <p>
-          <a class="btn btn-default" href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf#page=11">Learn more »</a>
-        </p>
+        <!--<p>
+            <a class="btn btn-default" target="_blank" href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-14/pan14-data/">Download corpus</a>
+          </p>-->
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">Related Work</div>
-      <div class="panel-body">
-        <p>This task has been run since PAN'12; here is a quick list of the respective proceedings and overviews:</p>
-        <ul><li>
-        <a href="clef14/pan14-web/about.html#proceedings">PAN @ CLEF'14</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2014k.pdf">overview paper</a>), and
-        </li><li>
-        <a href="clef13/pan13-web/about.html#proceedings">PAN @ CLEF'13</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf">overview paper</a>), and
-        </li><li>
-        <a href="clef12/pan12-web/about.html#proceedings">PAN @ CLEF'12</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2012t.pdf">overview paper</a>).
-        </li></ul>
+  	  <div class="panel-heading">Submission</div>
+        <div class="panel-body">
+          <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
+          <pre class="prettyprint lang-c" style="overflow-x:auto">
+  > mySoftware <b>-i</b> path/to/corpus/file <b>-o</b> path/to/output/file
+  </pre>
+          <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
+          <p><a class="btn btn-default" href="pan15-virtual-machine-user-guide.pdf">PAN Virtual Machine User Guide »</a></p>
+          <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
+          <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the PAN competition. We agree not to share your software with a third party or use it for other purposes than the PAN competition.</p>
+        </div>
+  	</div>
+  	<!--
+  	<div class="panel panel-default">
+        <div class="panel-heading">Results</div>
+        <div class="panel-body">
+          <p>The following table lists the performances achieved by the participating teams:</p>
+          <table class="table table-condensed rule" style="font-size:small;">
+          <thead>
+          <tr class="top"><th colspan="5" style="text-align:center">Source Retrieval Performance</th></tr>
+          <tr class="top2"><th colspan="2" style="text-align:center">Workload to 1st Detection</th><th colspan="2" style="text-align:center">Downloaded Sources</th><th>Team</th></tr>
+          <tr class="mid"><th>Queries</th><th>Downloads</th><th>Precision</th><th>Recall</th><th></th></tr>
+          </thead>
+          <tbody>
+          <tr><td> 54.5</td><td> 33.2</td><td>0.40</td><td>0.39</td><td>Victoria Elizalde<br/>Private, Argentina</td></tr>
+          <tr><td> 83.5</td><td>207.1</td><td>0.08</td><td>0.48</td><td>Leilei Kong, Yong Han, Zhongyuan Han, Haihao Yu, Qibo Wang, Tinglei Zhang , Haoliang Qi<br/>Heilongjiang Institute of Technology, China</td></tr>
+          <tr><td> 60.0</td><td> 38.8</td><td>0.38</td><td>0.51</td><td>Amit Prakash and Sujan kumar Saha<br/>Birla Institute of Technology, India</td></tr>
+          <tr><td> 19.5</td><td>237.3</td><td>0.08</td><td>0.40</td><td>Šimon Suchomel and Michal Brandejs<br/>Masaryk University, Czech Republic</td></tr>
+          <tr><td>117.1</td><td> 14.4</td><td>0.57</td><td>0.48</td><td>Kyle Williams, Hung-Hsuan Chen, and C. Lee Giles<br/>Pennsylvania State University, USA</td></tr>
+          <tr><td> 37.0</td><td> 18.6</td><td>0.54</td><td>0.45</td><td>Denis Zubarev° and Ilya Sochenkov*<br/>°Institute for Systems Analysis of Russian Academy of Sciences and *Peoples’ Friendship University of Russia, Russia</td></tr>
+          </tbody>
+          </table>
+          <p>A more detailed analysis of the retrieval performances can be found in the overview paper accompanying this task.</p>
+          <p>
+            <a class="btn btn-default" href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf#page=11">Learn more »</a>
+          </p>
+        </div>
       </div>
-    </div>
-
-  </div>
-  <div class="col-sm-6">
-    <h2 id="text-alignment">Obfuscation Evaluation</h2>
-    <div class="panel panel-default">
-      <div class="panel-heading">Task</div>
-      <div class="panel-body">
-        <p>
-        We call an obfuscation software
-        <ul>
-          <li><em>safe</em>, if a forensic analysis does not reveal the original author of its obfuscated texts,</li>
-          <li><em>sound</em>, if its obufscated texts are textually entailed with their originals, and</li>
-          <li><em>sensible</em>, if its obfuscated texts are inconspicuous.</li>
-        </ul>
-        </p>
-        <p>These dimensions are orthogonal; an obfuscation software may meet any of them to various degrees of perfection.</p>
-        <p>The task is to devise and implement performance measures that quantify any or parts of these aspects of an obfuscation software.</p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Input</div>
-      <div class="panel-body">
-        <p>We will provide you with the data generated by submitted obfuscation software as soon as it becomes available.</p>
-        <p>The input format will be the same as the output of the author masking task.</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Output</div>
-      <div class="panel-body">
-        <p>The output of an evaluation software should be formatted as follows:</p>
-<pre class="prettyprint lang-proto">
-measure {
-  key  : "myMeasure"
-  value: "0.567"
-}
-measure {
-  key  : "myOtherMeasure"
-  value: "1.5789"
-}
-measure {
-  key  : "myThirdMeasure"
-  value: "0.98421"
-}
-...
-</pre>
-        <p>The output is formatted as ProtoBuf text, not JSON.</p>
-        <p><code>key</code> can be any string that clearly and concisely names the performance measure.</p>
-        <p><code>value</code> shall be a numeric quantification of the measure for a given obfuscated text.</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Submission</div>
-      <div class="panel-body">
-        <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
-        <pre class="prettyprint lang-c" style="overflow-x:auto">
-> mySoftware <b>-i</b> path/to/run/directory <b>-o</b> path/to/output/directory
-</pre>
-        <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
-        <p><a class="btn btn-default" href="pan15-virtual-machine-user-guide.pdf">PAN Virtual Machine User Guide »</a></p>
-        <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
-        <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the PAN competition. We agree not to share your software with a third party or use it for other purposes than the PAN competition.</p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Performance Measures</div>
-      <div class="panel-body">
-        <p>Performance will be measured by assessing the validity of your corpus in two ways.</p>
-        <p><em>Detection:</em> Your corpus will be fed into the text alignment prototypes that have been submitted in previous years to the text alignment task. The performances of each text alignment prototype in detecting the plagiarism in your corpus will be measured using macro-averaged precision and recall, granularity, and the plagdet score.</p>
-        <p><em>Peer-review:</em> Your corpus will be made available to the other participants of this task and be subject to peer-review. Every participant will be given a chance to assess and analyze the corpora of all other participants in order to determine corpus quality.</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Test Corpus</div>
-      <div class="panel-body">
-        <p>Once you finished tuning your approach to achieve satisfying performance on the training corpus, you should run your software on the test corpus.</p>
-        <p>During the competition, the test corpus will not be released publicly. Instead, we ask you to submit your software for evaluation at our site as described below.</p>
-        <p>After the competition, the test corpus is available including ground truth data. This way, you have all the necessities to evaluate your approach on your own, yet being comparable to those who took part in the competition.</p>
-        <p>
-          <a class="btn btn-default" target="_blank" href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-14/pan14-data/">Download corpus</a>
-        </p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Submission</div>
-      <div class="panel-body">
-        <p>To submit your corpus, put it in a ZIP archive, and make it available to us via a file sharing service of your choosing, e.g., Dropbox, or Mega.</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Results</div>
-      <div class="panel-body">
-        <p>The following table lists the performances achieved by the participating teams:</p>
-        <table class="table table-condensed rule"  style="font-size:small;">
-        <thead>
-        <tr><th colspan="2" style="text-align:center">Text Alignment Performance</th></tr>
-        <tr><th>Plagdet</th><th>Team</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0.87818</td><td>Miguel A. Sanchez-Perez, Grigori Sidorov, and Alexander Gelbukh<br/>Instituto Politécnico Nacional, Mexico</td></tr>
-        <tr><td>0.86933</td><td>Gabriel Oberreuter and Andreas Eiselt<br/>Innovand.io, Chile</td></tr>
-        <tr><td>0.86806</td><td>Yurii Palkovskii and Alexei Belov<br/>Zhytomyr Ivan Franko State University, Ukraine</td></tr>
-        <tr><td>0.85930</td><td>Demetrios Glinos<br/>University of Central Florida, USA</td></tr>
-        <tr><td>0.84404</td><td>Prasha Shrestha, Suraj Maharjan, and Thamar Solorio<br/>University of Alabama at Birmingham, USA</td></tr>
-        <tr><td>0.82952</td><td>Diego Antonio Rodríguez Torrejón and José Manuel Martín Ramos<br/>Universidad de Huelva, Spain</td></tr>
-        <tr><td>0.82642</td><td>Philipp Gross and Pashutan Modaresi<br/>pressrelations GmbH, Germany</td></tr>
-        <tr><td>0.82161</td><td>Leilei Kong, Yong Han, Zhongyuan Han, Haihao Yu, Qibo Wang, Tinglei Zhang, Haoliang Qi<br/>Heilongjiang Institute of Technology, China</td></tr>
-        <tr><td>0.67220</td><td>Samira Abnar, Mostafa Dehghani, Hamed Zamani, and Azadeh Shakery<br/>University of Tehran, Iran</td></tr>
-        <tr><td>0.65954</td><td>Faisal Alvi°, Mark Stevenson*, and Paul Clough*<br/>°King Fahd University of Petroleum & Minerals, Saudi Arabia, and *University of Sheffield, UK</td></tr>
-        <tr><td>0.42191</td><td>Baseline</td></tr>
-        <tr><td>0.28302</td><td>Lee Gillam and Scott Notley<br/>University of Surrey, UK</td></tr>
-        </tbody>
-        </table>
-        <p>A more detailed analysis of the detection performances can be found in the overview paper accompanying this task.</p>
-        <p>
-          <a class="btn btn-default" href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf#page=18">Learn more »</a>
-        </p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Related Work</div>
-      <div class="panel-body">
-        <p>The text alignment task has been run since PAN'09; here is a quick list of the respective proceedings and overviews:</p>
-        <ul><li>
-        <a href="clef14/pan14-web/about.html#proceedings">PAN @ CLEF'14</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2014k.pdf">overview paper</a>),
-        </li><li>
-        <a href="clef13/pan13-web/about.html#proceedings">PAN @ CLEF'13</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf">overview paper</a>),
-        </li><li>
-        <a href="clef12/pan12-web/about.html#proceedings">PAN @ CLEF'12</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2012t.pdf">overview paper</a>),
-        </li><li>
-        <a href="clef11/pan11-web/about.html#proceedings">PAN @ CLEF'11</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2011t.pdf">overview paper</a>),
-        </li><li>
-        <a href="clef10/pan10-web/about.html#proceedings">PAN @ CLEF'10</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2010t.pdf">overview paper</a>), and
-        </li><li>
-        <a href="sepln09/pan09-web/about.html#proceedings">PAN @ SEPLN'09</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2009e.pdf">overview paper</a>).
-        </li></ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div id="task-committee" class="row" style="padding-top:30px;">
-  <div class="col-xs-12">
-    <h1 class="page-header">Task Chair</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-6 col-sm-3">
-    <div class="thumbnail" style="text-align:center;">
-      <a href="http://www.uni-weimar.de/medien/webis/people" target="_blank"><img src="img/martin.jpg" class="img-rounded" alt="Martin Potthast"></a>
-      <p style="white-space:nowrap"><a href="http://www.uni-weimar.de/medien/webis/people" target="_blank">Martin Potthast</a></p>
-      <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">Related Work</div>
+        <div class="panel-body">
+          <p>This task has been run since PAN'12; here is a quick list of the respective proceedings and overviews:</p>
+          <ul><li>
+          <a href="clef14/pan14-web/about.html#proceedings">PAN @ CLEF'14</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2014k.pdf">overview paper</a>), and
+          </li><li>
+          <a href="clef13/pan13-web/about.html#proceedings">PAN @ CLEF'13</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf">overview paper</a>), and
+          </li><li>
+          <a href="clef12/pan12-web/about.html#proceedings">PAN @ CLEF'12</a> (<a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2012t.pdf">overview paper</a>).
+          </li></ul>
+        </div>
+      </div>-->
+    </div> <!-- col -->
+  </div> <!-- row -->
+  
+  
+  <div id="task-committee" class="row" style="padding-top:30px;">
+    <div class="col-xs-12">
+      <h1 class="page-header">Task Chairs</h1>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Task Committee</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-6 col-sm-3">
-    <div class="thumbnail" style="text-align:center;">
-      <a href="http://www.uni-weimar.de/medien/webis/people" target="_blank"><img src="img/matthias.jpg" class="img-rounded" alt="Matthias Hagen"></a>
-      <p style="white-space:nowrap"><a href="http://www.uni-weimar.de/medien/webis/people" target="_blank">Matthias Hagen</a></p>
-      <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://is.uni-paderborn.de/en/research-group/fg-engels/people/visitenkarten/heindorf/business-card.html" target="_blank"><img src="img/stefan.jpg" class="img-rounded" alt="Stefan Heindorf"></a>
+        <p style="white-space:nowrap"><a href="http://is.uni-paderborn.de/en/research-group/fg-engels/people/visitenkarten/heindorf/business-card.html" target="_blank">Stefan Heindorf</a></p>
+        <p style="font-size:10pt">Paderborn University</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://www.uni-weimar.de/medien/webis/people" target="_blank"><img src="img/martin.jpg" class="img-rounded" alt="Martin Potthast"></a>
+        <p style="white-space:nowrap"><a href="http://www.uni-weimar.de/medien/webis/people" target="_blank">Martin Potthast</a></p>
+        <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+      </div>
     </div>
   </div>
-  <div class="col-xs-6 col-sm-3">
-    <div class="thumbnail" style="text-align:center;">
-      <a href="http://www.webis.de" target="_blank"><img src="img/benno.jpg" class="img-rounded" alt="Benno Stein"></a>
-      <p style="white-space:nowrap"><a href="http://www.webis.de" target="_blank">Benno Stein</a></p>
-      <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Task Committee</h2>
     </div>
   </div>
-</div>
--->
-
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://is.uni-paderborn.de/" target="_blank"><img src="img/gregor.jpg" class="img-rounded" alt="Gregor Engels"></a>
+        <p style="white-space:nowrap"><a href="http://is.uni-paderborn.de/" target="_blank">Gregor Engels</a></p>
+        <p style="font-size:10pt">Paderborn University</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://www.webis.de" target="_blank"><img src="img/benno.jpg" class="img-rounded" alt="Benno Stein"></a>
+        <p style="white-space:nowrap"><a href="http://www.webis.de" target="_blank">Benno Stein</a></p>
+        <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+      </div>
+    </div>
+  </div>
+  
+  
 </div> <!-- /container -->
 
 <script src="js/jquery.js"></script>
