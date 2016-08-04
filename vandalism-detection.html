@@ -86,7 +86,7 @@
         <div class="panel-body">
           <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.</p>
           <p>
-  			The dataset will be published until September 1, 2016.
+  			<i>The dataset will be published on September 1, 2016.</i>
             <!--<a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a> -->
           </p>
         </div>	  
@@ -95,17 +95,17 @@
   	  <div class="panel panel-default">
         <div class="panel-heading">Output</div>
         <div class="panel-body">
-          <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32:
+          <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32. Here are a few example rows:</p>
   		
-  		<table class="table table-condensed rule"  style="font-size:small;">
-          <thead>
-          <tr><th>Revision Id</th><th>Vandalism Score</th></tr>
-          </thead>
-          <tbody>
-          <tr><td>123</td><td>0.95</td></tr>
-          <tr><td>124</td><td>0.30</td></tr>
-          <tr><td>125</td><td>12.e-5</td></tr>
-          </tbody>
+  		  <table class="table table-condensed rule"  style="font-size:small;">
+            <thead>
+              <tr><th>Revision Id</th><th>Vandalism Score</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>123</td><td>0.95</td></tr>
+              <tr><td>124</td><td>0.30</td></tr>
+              <tr><td>125</td><td>12.e-5</td></tr>
+            </tbody>
           </table>
   	  </div>
     </div>
