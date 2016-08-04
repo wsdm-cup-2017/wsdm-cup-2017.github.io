@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WSDM Cup 2017</title> 
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/prettify.css" rel="stylesheet" />
+
+<style>
+.navbar .navbar-nav {
+  font-weight: bold;
+}
+</style>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="img/icon-wsdm.png">
+<!--
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+-->
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom:0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">WSDM Cup 2017</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Organization</a></li>
+        <li><a href="about.html#important-dates">Important Dates</a></li>
+        <!--<li><a href="proceedings.html">Proceedings</a></li>-->
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a href="wikidata-vandalism-detection.html">Wikidata Vandalism Detection</a></li>
+            <li><a href="wikidata-entity-search.html">Wikidata Entity Search</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 id="task-description" class="page-header">
+        Triple Scoring
+      </h1>
+
+      <p>Knowledge base queries typically produce a list of entities. For
+      reasons similar as in full-text search, it is usually desirable to
+      <i>rank</i> these entities. A basic ingredient in such a ranking are
+      relevance scores for individual triples.
+      </p>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Task</div>
+        <div class="panel-body">
+          <p>Given a triple from a "type-like" relation, compute a score that measures the relevance of the statement expressed by the triple compared to other triples from the same relation.
+          <p><i>Note: read on to understand the emphasis on "type-like" relations. In a nutshell, these are the relations for which relevance scores are needed most.</i></p>
+        </div>
+      </div>
+	  
+      <div class="panel panel-default">
+  	  <div class="panel-heading">Training data</div>
+        <div class="panel-body">
+          <p>We will provide a training set consisting of triples and their
+          relevance scores, as obtained from human judges. See the next section
+          for some examples.
+          <p><i>This information will be published on September 1, 2016.</i></p>
+            <!--<a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a> -->
+          </p>
+        </div>	  
+      </div>
+	  
+      <div class="panel panel-default">
+        <div class="panel-heading">Test data</div>
+        <div class="panel-body">
+          <p>The test set will consist of a set of triples. The triples will
+          come from the same relations as the triples in the training data.
+          Your software should output a relevance score in the range [0,1] for
+          each triple. The output should be formatted as a CSV file in the
+          format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and
+          consist of two columns. The first column repeats the triple (subject,
+          predicate, object) and the second column contains the relevance score
+          as a float32. Here are a few example rows:
+          <table class="table table-condensed rule" style="font-size:small;">
+          <thead>
+          <tr><th>Triple</th><th>Relevance Score</th></tr>
+          </thead>
+          <tbody>
+          <tr><td>Quentin_Tarantino has_profession Actor</td><td>0.3</td></tr>
+          <tr><td>Quentin_Tarantino has_profession Director</td><td>1.0</td></tr>
+          <tr><td>Johnny_Depp has_profession Actor</td><td>1.0</td></tr>
+          <tr><td>Arnold_Schwarzenegger has_profession Actor</td><td>0.6</td></tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+	
+      <div class="panel panel-default">
+        <div class="panel-heading">Performance Measures</div>
+        <div class="panel-body">
+          <p>Your relevance scores will be compared to a ground truth
+          obtained via human judges (just like for the training data).
+          Each triple (both from the training set and the test set) has
+          been judged by 7 human judges.  Each judgement is binary:
+          primarily relevant or secondarily relevant (note that all the
+          triples are "correct", so there is not category "irrelevant"
+          here). The 7 judgements per triple are combined to a relevance
+          score in the obvious way: divide the number of "primarily
+          relevant" judgments by 7. This gives a relevance score between 0
+          and 1 for each triple.</p>
+          
+          <p>We evaluate three relevance measures, two score-based and one
+          rank-based:</p>
+          
+          <p>Average score difference: for each triple, take the absolute
+          difference of the relevance score computed by your system and
+          the score from the ground truth; add up these difference and
+          divide by the number of triples.</p>
+
+          <p>Accuracy: the percentage of triples for which the scores
+          computed by your system differe from the scores from the ground
+          truth by at most 2/7. (Recall: the scores in the ground
+          truth were computed from 7 binary relevance judgments.)</p>
+
+          <p>Kendall's Tau: for each relation, for each subject, compute
+          the ranking of all triples with that subject and
+          relation according to the scores computed by your system and the
+          score from the ground truth. Compute the difference of the two
+          rankings using Kendall's tau (TODO: specify how to deal with
+          ties in the ranking.)</p>
+        </div>
+      </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Submission</div>
+        <div class="panel-body">
+          <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
+          <pre class="prettyprint lang-c" style="overflow-x:auto">
+ > mySoftware <b>-i</b> path/to/test/file <b>-o</b> path/to/output/file</pre>
+          <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
+          <p><a class="btn btn-default" href="pan15-virtual-machine-user-guide.pdf">PAN Virtual Machine User Guide »</a></p>
+          <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
+          <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the PAN competition. We agree not to share your software with a third party or use it for other purposes than the PAN competition.</p>
+        </div>
+     </div>
+   </div>
+	
+  <div id="task-committee" class="row" style="padding-top:30px;">
+    <div class="col-xs-12">
+      <h1 class="page-header">Task Chairs</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank"><img src="https://ad.informatik.uni-freiburg.de/bilder/HB17Mai14" class="img-rounded" alt="Hannah Bast" height="140"></a>
+        <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank">Hannah Bast</a></p>
+        <p style="font-size:10pt">University of Freiburg</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://ad.informatik.uni-freiburg.de/staff/NN" target="_blank"><img src="https://ad.informatik.uni-freiburg.de/bilder/NN" class="img-rounded" alt="NN" height="140"></a>
+        <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/NN" target="_blank">NN</a></p>
+        <p style="font-size:10pt">University of Freiburg</p>
+      </div>
+    </div>
+  </div>
+  
+</div> <!-- /container -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prettify.js"></script>
+<script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()   
+    })
+  }(window.jQuery)
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-19597677-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
+
