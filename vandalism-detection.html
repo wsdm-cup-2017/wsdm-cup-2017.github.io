@@ -79,24 +79,93 @@
         <div class="panel-body">
           <p>Given a Wikidata revision, compute a vandalism score denoting the likelihood of this revision beeing vandalism (or similarly damaging).</p>
         </div>
-	  </div>
-	  
-      <div class="panel panel-default">
-  	  <div class="panel-heading">Training Corpus</div>
-        <div class="panel-body">
-          <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.<p>
-          <p><i>The official dataset will be published on September 1, 2016.</i></p>
-		  <p>If you want to get started right now, take a look at the <a href="http://www.uni-weimar.de/de/medien/professuren/webis/corpora/wdvc-15/">Wikidata Vandalism Corpus 2015 (WDVC-15)</a>. The corpus can be processed, for example, with <a href="https://www.mediawiki.org/wiki/Wikidata_Toolkit">Wikidata Toolkit</a>.</p>
-            <!--<p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a></p> -->
-        </div>	  
       </div>
 	  
-  	  <div class="panel panel-default">
+	  <div class="panel panel-default">
+        <div class="panel-heading">Rules</div>
+        <div class="panel-body">
+		<p>The goal of the vandalism detection task is to detect vandalism nearly in real time as soon as it happens. Hence, the following rules apply:</p>
+		
+          <ul>
+		    <li>Use of any additional data that is newer than the provided training data is forbidden. In particular, you <b>may not</b> scrape any Wikimedia website, use the API, the dumps, or any related data.</li>
+			<li><b>You may</b> use sources of publicly available external data having to do with geographical information, demographic information, natural language processing, etc. This data must not relate to the specific revision label (vandalism vs regular).</li>
+           </ul>
+        </div>
+      </div>
+	  
+      
+      <div class="panel panel-default">
+      <div class="panel-heading">Wikidata Vandalism Corpus 2016</div>
+        <div class="panel-body">
+          <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.<p>
+          <p>The Wikidata Vandalism Corpus 2016 contains revisions of the knowledge base Wikidata. The corpus comprises manual revisions only, while all revisions by official bots were filtered out. For each revision, we provide the information whether it is considered vandalism (ROLLBACK_REVERTED) or not. Unlike the Wikidata dumps, revisions are ordered chronologically by REVISION_ID (i.e., in the order they arrived at Wikidata). For training, we provide data until February 29, 2016. The evaluation will be conducted on later data.</p>
+          <p>The provided training data consists of 23 in total. You can check their validty via their <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.md5">md5</a> or <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.sha1">sha1</a> checksums.</p>
+          <h4>Revision Data Files (21 files)</h4>
+          <ul>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2012_10.xml.7z">wdvc16_2012_10.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2012_11.xml.7z">wdvc16_2012_11.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_01.xml.7z">wdvc16_2013_01.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_03.xml.7z">wdvc16_2013_03.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_05.xml.7z">wdvc16_2013_05.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_07.xml.7z">wdvc16_2013_07.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_09.xml.7z">wdvc16_2013_09.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2013_11.xml.7z">wdvc16_2013_11.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_01.xml.7z">wdvc16_2014_01.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_03.xml.7z">wdvc16_2014_03.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_05.xml.7z">wdvc16_2014_05.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_07.xml.7z">wdvc16_2014_07.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_09.xml.7z">wdvc16_2014_09.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2014_11.xml.7z">wdvc16_2014_11.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_01.xml.7z">wdvc16_2015_01.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_03.xml.7z">wdvc16_2015_03.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_05.xml.7z">wdvc16_2015_05.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_07.xml.7z">wdvc16_2015_07.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_09.xml.7z">wdvc16_2015_09.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2015_11.xml.7z">wdvc16_2015_11.xml.7z</a></li>
+            <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2016_01.xml.7z">wdvc16_2016_01.xml.7z</a></li>
+          </ul>
+          <h4>Meta File  (1 File)</h4>
+            <p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_meta.csv.7z">wdvc16_meta.csv.7z</a></p>
+            <table class="table table-condensed rule"  style="font-size:small;">
+              <thead>
+                <tr><th>Name</th><th>Types</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>REVISION_ID        </td><td>Integer            </td><td> The Wikidata revision id                                             </td></tr>
+                <tr><td>REVISION_SESSION_ID</td><td>Integer            </td><td> The Wikidata revision id of the first revision in this session       </td></tr>
+                <tr><td>USER_COUNTRY_CODE  </td><td>String             </td><td> Country code for IP address (only available for unregistered users)  </td></tr>
+                <tr><td>USER_CONTINENT_CODE</td><td>String             </td><td> Continent code for IP address (only available for unregistered users)</td></tr>
+                <tr><td>USER_TIME_ZONE     </td><td>String             </td><td> Time zone for IP address (only available for unregistered users)     </td></tr>
+                <tr><td>USER_REGION_CODE   </td><td>String             </td><td> Region code for IP address (only available for unregistered users)   </td></tr>
+                <tr><td>USER_CITY_NAME     </td><td>String             </td><td> City name for IP address (only available for unregistered users)     </td></tr>
+                <tr><td>USER_COUNTY_NAME   </td><td>String             </td><td> County name for IP address (only available for unregistered users)   </td></tr>
+                <tr><td>REVISION_TAGS      </td><td>List&lt;String&gt; </td><td> The Wikidata revision tags                                           </td></tr>
+              </tbody>
+            </table>
+           <h4>Truth File (1 File)</h4>
+             <p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_truth.csv.7z">wdvc16_truth.csv.7z</a></p>
+             <table class="table table-condensed rule"  style="font-size:small;">
+               <thead>
+                <tr><th>Name</th><th>Types</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                 <tr><td>REVISION_ID          </td><td>Integer</td><td>The Wikidata revision id                                           </td></tr>
+                 <tr><td>ROLLBACK_REVERTED    </td><td>Boolean</td><td>Whether this revision was reverted via the rollback feature        </td></tr>
+                 <tr><td>UNDO_RESTORE_REVERTED</td><td>Boolean</td><td>Whether this revision was reverted via the undo/restore feature    </td></tr>
+              </tbody>
+            </table>
+            <p>The ROLLBACK_REVERTED field encodes the official ground truth for this competition. The UNDO_RESTORE_REVERTED field serves informational purposes only.</p>
+            <p>The truth file will only be available for the training dataset but not for test datasets.</p>
+            <p> The corpus can be processed, for example, with <a href="https://www.mediawiki.org/wiki/Wikidata_Toolkit">Wikidata Toolkit</a>.</p>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
         <div class="panel-heading">Output</div>
         <div class="panel-body">
           <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32. Here are a few example rows:</p>
-  		
-  		  <table class="table table-condensed rule"  style="font-size:small;">
+
+          <table class="table table-condensed rule"  style="font-size:small;">
             <thead>
               <tr><th>Revision Id</th><th>Vandalism Score</th></tr>
             </thead>
@@ -133,14 +202,15 @@
     <div class="panel panel-default">
   	  <div class="panel-heading">Submission</div>
         <div class="panel-body">
-          <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
+          <p>We ask you to prepare your software so that it can be executed via a command line call without any parameters.</p>
           <pre class="prettyprint lang-c" style="overflow-x:auto">
-  > mySoftware <b>-i</b> path/to/corpus/file <b>-o</b> path/to/output/file
+  > mySoftware
   </pre>
           <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
           <p><a class="btn btn-default" href="wsdm-cup-17-virtual-machine-user-guide.pdf">Virtual Machine User Guide »</a></p>
           <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
           <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the WSDM Cup 2017. We agree not to share your software with a third party or use it for other purposes than the WSDM Cup 2017.</p>
+		  <p>Your software will receive the uncompressed Wikidata revisions on <code>stdin</code>, and the uncompressed meta data on the named pipe <code>meta</code>. Your program must produce the results on <code>stdout</code> in form of a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions on <code>stdin</code> and <code>meta</code> after having reported your vandalism score on <code>stdout</code>. To enable fast and concurrent processing of data, we will introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k + 1</var> on <code>stdin</code> as soon as having reported your result for revision <var>n</var> on <code>stdout</code> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions). We will provide you a demo program in the following days enabling you to test your software against it.
         </div>
   	</div>
 	
@@ -171,15 +241,7 @@
         </div>
       </div>-->
 	  
-	  <div class="panel panel-default">
-        <div class="panel-heading">Rules</div>
-        <div class="panel-body">
-          <ul>
-		    <li>The goal of the vandalism detection task is to detect new vandalism based on previous information. Use of any additional data that is newer than the provided training data is forbidden. In particular, you <b>may not</b> scrape any Wikimedia website, use the API, use the dumps, or any related data.</li>
-			<li><b>You may</b> use sources of publicly available external data having to do with geographical information, demographic information, natural language processing, etc. This data must not relate to the specific revision label (vandalism vs regular).</li>
-           </ul>
-        </div>
-      </div>
+
 	  
       <div class="panel panel-default">
         <div class="panel-heading">Related Work</div>
