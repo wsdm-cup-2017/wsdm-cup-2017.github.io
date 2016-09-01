@@ -99,7 +99,7 @@
         <div class="panel-body">
           <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.<p>
           <p>The Wikidata Vandalism Corpus 2016 contains revisions of the knowledge base Wikidata. The corpus comprises manual revisions only, while all revisions by official bots were filtered out. For each revision, we provide the information whether it is considered vandalism (ROLLBACK_REVERTED) or not. Unlike the Wikidata dumps, revisions are ordered chronologically by REVISION_ID (i.e., in the order they arrived at Wikidata). For training, we provide data until February 29, 2016. The evaluation will be conducted on later data.</p>
-          <p>The provided training data consists of 23 in total. You can check their validty via their <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.md5">md5</a> or <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.sha1">sha1</a> checksums.</p>
+          <p>The provided training data consists of 23 files in total. You can check their validty via their <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.md5">md5</a> or <a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/checksums.sha1">sha1</a> checksums.</p>
           <h4>Revision Data Files (21 files)</h4>
           <ul>
             <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2012_10.xml.7z">wdvc16_2012_10.xml.7z</a></li>
@@ -125,7 +125,9 @@
             <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_2016_01.xml.7z">wdvc16_2016_01.xml.7z</a></li>
           </ul>
           <h4>Meta File  (1 File)</h4>
-            <p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_meta.csv.7z">wdvc16_meta.csv.7z</a></p>
+            <ul>
+              <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_meta.csv.7z">wdvc16_meta.csv.7z</a></li>
+            </ul>
             <table class="table table-condensed rule"  style="font-size:small;">
               <thead>
                 <tr><th>Name</th><th>Types</th><th>Description</th></tr>
@@ -143,7 +145,9 @@
               </tbody>
             </table>
            <h4>Truth File (1 File)</h4>
-             <p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_truth.csv.7z">wdvc16_truth.csv.7z</a></p>
+             <ul>
+               <li><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-wdvc-16/wdvc16_truth.csv.7z">wdvc16_truth.csv.7z</a></li>
+             </ul>
              <table class="table table-condensed rule"  style="font-size:small;">
                <thead>
                 <tr><th>Name</th><th>Types</th><th>Description</th></tr>
@@ -175,20 +179,20 @@
               <tr><td>125</td><td>12.e-5</td></tr>
             </tbody>
           </table>
-  	  </div>
+      </div>
     </div>
-	
+    
     <div class="panel panel-default">
         <div class="panel-heading">Performance Measures</div>
         <div class="panel-body">
-  		<p>For determining the winner, we use ROC-AUC as primary evaluation measure.</p>
-  		
-  		<p>For informational purposes, we might compute further evaluation measures such as PR-AUC and the runtime of the software.</p>
-  	  </div>
+        <p>For determining the winner, we use ROC-AUC as primary evaluation measure.</p>
+        
+        <p>For informational purposes, we might compute further evaluation measures such as PR-AUC and the runtime of the software.</p>
+      </div>
     </div>
-	
+    
     <div class="panel panel-default">
-  	<div class="panel-heading">Test Corpus</div>
+    <div class="panel-heading">Test Corpus</div>
       <div class="panel-body">
         <p>Once you finished tuning your approach to achieve satisfying performance on the training corpus, you should run your software on the test corpus.</p>
         <p>During the competition, the test corpus will not be released publicly. Instead, we ask you to submit your software for evaluation at our site as described below.</p>
@@ -198,9 +202,9 @@
           </p>-->
       </div>
     </div>
-	
+    
     <div class="panel panel-default">
-  	  <div class="panel-heading">Submission</div>
+     <div class="panel-heading">Submission</div>
         <div class="panel-body">
           <p>We ask you to prepare your software so that it can be executed via a command line call without any parameters.</p>
           <pre class="prettyprint lang-c" style="overflow-x:auto">
@@ -210,12 +214,12 @@
           <p><a class="btn btn-default" href="wsdm-cup-17-virtual-machine-user-guide.pdf">Virtual Machine User Guide »</a></p>
           <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
           <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the WSDM Cup 2017. We agree not to share your software with a third party or use it for other purposes than the WSDM Cup 2017.</p>
-		  <p>Your software will receive the uncompressed Wikidata revisions on <code>stdin</code>, and the uncompressed meta data on the named pipe <code>meta</code>. Your program must produce the results on <code>stdout</code> in form of a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions on <code>stdin</code> and <code>meta</code> after having reported your vandalism score on <code>stdout</code>. To enable fast and concurrent processing of data, we will introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k + 1</var> on <code>stdin</code> as soon as having reported your result for revision <var>n</var> on <code>stdout</code> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions). We will provide you a demo program in the following days enabling you to test your software against it.
+          <p>Your software will receive the uncompressed Wikidata revisions on <code>stdin</code>, and the uncompressed meta data on the named pipe <code>meta</code>. Your program must produce the results on <code>stdout</code> in form of a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions on <code>stdin</code> and <code>meta</code> after having reported your vandalism score on <code>stdout</code>. To enable fast and concurrent processing of data, we will introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k</var> on <code>stdin</code> as soon as having reported your result for revision <var>n</var> on <code>stdout</code> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions). We will provide you a demo program in the following days enabling you to test your software against it.
         </div>
-  	</div>
-	
-  	<!--
-  	<div class="panel panel-default">
+    </div>
+    
+    <!--
+    <div class="panel panel-default">
         <div class="panel-heading">Results</div>
         <div class="panel-body">
           <p>The following table lists the performances achieved by the participating teams:</p>
@@ -240,25 +244,25 @@
           </p>
         </div>
       </div>-->
-	  
+      
 
-	  
+      
       <div class="panel panel-default">
         <div class="panel-heading">Related Work</div>
         <div class="panel-body">
           <ul><li>
-		  
-		  Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">Vandalism Detection in Wikidata</a>. In <i>Proceedings of the 25th ACM International Conference on Information and Knowledge Management (CIKM 16) (to appear) </i> , October 2016. ACM.
-		  <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">[Paper]</a>
+          
+          Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">Vandalism Detection in Wikidata</a>. In <i>Proceedings of the 25th ACM International Conference on Information and Knowledge Management (CIKM 16) (to appear) </i> , October 2016. ACM.
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">[Paper]</a>
           </li><li>
-		  Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">Towards Vandalism Detection in Knowledge Bases: Corpus Construction and Analysis</a>. In Ricardo Baeza-Yates, Mounia Lalmas, Alistair Moffat, and Berthier Ribeiro-Neto, editors, <i>38th International ACM Conference on Research and Development in Information Retrieval (SIGIR 15)</i>, pages 831-834, August 2015. ACM. ISBN 978-1-4503-3621-5
-		  <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">[Paper]</a>
-		  <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR_poster.pdf">[Poster]</a>
-		  <a href=" http://www.uni-weimar.de/en/media/chairs/webis/corpora/corpus-wdvc-15/">[Corpus]</a>
+          Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">Towards Vandalism Detection in Knowledge Bases: Corpus Construction and Analysis</a>. In Ricardo Baeza-Yates, Mounia Lalmas, Alistair Moffat, and Berthier Ribeiro-Neto, editors, <i>38th International ACM Conference on Research and Development in Information Retrieval (SIGIR 15)</i>, pages 831-834, August 2015. ACM. ISBN 978-1-4503-3621-5
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">[Paper]</a>
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR_poster.pdf">[Poster]</a>
+          <a href=" http://www.uni-weimar.de/en/media/chairs/webis/corpora/corpus-wdvc-15/">[Corpus]</a>
           </li><li>
-		  Martin Potthast, Benno Stein, and Robert Gerling. <a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2008c.pdf">Automatic Vandalism Detection in Wikipedia</a>. In Craig Macdonald et al, editors, <i>Advances in Information Retrieval. 30th European Conference on IR Research (ECIR 08)</i> volume 4956 of Lecture Notes in Computer Science, pages 663-668, Berlin Heidelberg New York, 2008. Springer. ISBN 978-3-540-78645-0. ISSN 0302-9743.
+          Martin Potthast, Benno Stein, and Robert Gerling. <a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2008c.pdf">Automatic Vandalism Detection in Wikipedia</a>. In Craig Macdonald et al, editors, <i>Advances in Information Retrieval. 30th European Conference on IR Research (ECIR 08)</i> volume 4956 of Lecture Notes in Computer Science, pages 663-668, Berlin Heidelberg New York, 2008. Springer. ISBN 978-3-540-78645-0. ISSN 0302-9743.
           <a href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2008c.pdf">[Paper]</a>
-		  <a href="http://www.uni-weimar.de/medien/webis/publications/posters/stein_2008c.pdf">[Poster]</a>
+          <a href="http://www.uni-weimar.de/medien/webis/publications/posters/stein_2008c.pdf">[Poster]</a>
           </li></ul>
         </div>
       </div>
