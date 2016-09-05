@@ -85,11 +85,13 @@
         <div class="panel-heading">Task</div>
         <div class="panel-body">
           <p>Given a triple from a "type-like" relation, compute a score that measures the relevance of the statement expressed by the triple compared to other triples from the same relation.
-          <p><i>Note: read on to understand the emphasis on "type-like" relations. In a nutshell, these are the relations for which relevance scores are needed most.</i></p>
+          <p><i>Note: read on to understand the emphasis on "type-like" relations. In a nutshell, these are the
+                  relations for which relevance scores are needed most. The task focuses on two such relations:
+          "profession" and "nationality".</i></p>
         </div>
       </div>
-	  
-	    <div class="panel panel-default">
+          
+      <div class="panel panel-default">
         <div class="panel-heading">Awards</div>
         <div class="panel-body">
           <p>The three best-performing approaches submitted by eligible participants as per the performance measures used for this task will receive the following awards, kindly sponsored by Adobe Systems, Inc.:
@@ -100,61 +102,88 @@
           </ol></p>
         </div>
       </div>
-	  
+
       <div class="panel panel-default">
-  	  <div class="panel-heading">Training data</div>
+        <div class="panel-heading">Task Rules</div>
         <div class="panel-body">
-          <p>We will provide a training set consisting of triples and their
-          relevance scores, as obtained from human judges. See the next section
-          for some examples.
-          <p>We are also thinking about providing additional information that
-          can be used for distant supervision learning. More about this soon.</p>
-          <p><i>All this information will be published on September 1, 2016.</i></p>
-          <p style="color:red;font-weight:bold">Update 01-09-2016: we are still running
-          a few more checks on our benchmark, please bear with us for another day or two,
-          thank you for your patience!</p>
-            <!--<p><a href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-16/pan16-data/pan16-author-masking-training-dataset-2016-02-17.zip" class="btn btn-default" target="_blank" href="">Download corpus</a></p>-->
-        </div>	  
-      </div>
-	  
-      <div class="panel panel-default">
-        <div class="panel-heading">Test data</div>
-        <div class="panel-body">
-          <p>The test set will consist of a set of triples. The triples will
-          come from the same relations as the triples in the training data.
-          Your software should output a relevance score in the range [0,1] for
-          each triple. The output should be formatted as a CSV file in the
-          format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and
-          consist of two columns. The first column repeats the triple (subject,
-          predicate, object) and the second column contains the relevance score
-          as a float32. Here are a few example rows:
-          <table class="table table-condensed rule" style="font-size:small;">
-          <thead>
-          <tr><th>Triple</th><th>Relevance Score</th></tr>
-          </thead>
-          <tbody>
-          <tr><td>Quentin_Tarantino has_profession Actor</td><td>0.3</td></tr>
-          <tr><td>Quentin_Tarantino has_profession Director</td><td>1.0</td></tr>
-          <tr><td>Johnny_Depp has_profession Actor</td><td>1.0</td></tr>
-          <tr><td>Arnold_Schwarzenegger has_profession Actor</td><td>0.6</td></tr>
-          </tbody>
-          </table>
+          <p>You are free to use the data provided in the next section, but you
+          do not have to use it, and you may use any kind or amount of other
+          data as well.</p>
+          <p>You are also free to use an arbitrary amount of computation.</p>
+          <p>However, you should not generate or make use of large amounts of
+          human judgements, in addition to the (exemplary) ones provided in the
+          <i>.train</i> files in the next section.</p>
         </div>
       </div>
-	
+          
+      <div class="panel panel-default">
+        <div class="panel-heading">Input / Training data</div>
+        <div class="panel-body">
+          <p>We provide the following text files. For the smaller files, you can 
+          just click on the link and look at the file in your browser. At the
+          end of the list is a link to a ZIP archive containing all the files.
+          Below the list we provide some more explanations.</p>
+          <p><table>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.train">profession.train</a></td>
+                <td>&nbsp;&nbsp;</td><td>a training set with 515 human judgments for 134 persons</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.all">profession.all</a></td>
+                <td>&nbsp;&nbsp;</td><td>all professions for a set of 343,329 persons</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.list">profession.list</a></td>
+                <td>&nbsp;&nbsp;</td><td>a list of the 200 professions relevant for this task</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.train">nationality.train</a></td>
+                <td>&nbsp;&nbsp;</td><td>a training set with 162 human judgments for 77 persons</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.all">nationality.all</a></td>
+                <td>&nbsp;&nbsp;</td><td>all nationalities for a set of 301,590 persons</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.list">nationality.list</a></td>
+                <td>&nbsp;&nbsp;</td><td>a list of the 100 nationalities relevant for this task</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/map-wiki2fb">map.wiki2fb</a></td>
+                <td>&nbsp;&nbsp;</td><td>a map from the 385,426 person names to their Freebase ids</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/wiki-sentences">wiki-sentences</a></td>
+                <td>&nbsp;&nbsp;</td><td>33,159,353 sentences from Wikipedia with annotations of the 385,426 person names above</td></tr>
+          </table></p>
+          <p><table>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/triple-scoring.zip">triple-scoring.zip</a></td>
+                <td>&nbsp;&nbsp;</td><td>a ZIP file containing all of the files above (1.5 GB compressed, 4.2 GB uncompressed)</td></tr>
+          </table></p>
+          <p>Some more explanations:</p>
+          <ul>
+            <li>When working on the task you will realize that the two training sets are not sufficient on their own,
+            but that you need additional data. In particular, there will be professions/nationalities in the test set
+            for which there is no example in the training set.</li>
+            <li>The training and test set contain only professions/nationalities from the <i>.all</i> files. (For the
+            training set you can verify it yourself, for the test set, we guarantuee it.)</li>
+            <li>The person names are <u>exactly</u> the names used by the Englisch Wikipedia. The training and test set
+            contain only person names from the <i>map.wiki2fb</i> file. The Freebase ids provided by that file are for
+            your convenience (for example, if you want to make use of a dataset like FACC1).</li>
+            <li>For each of these person names, there are sentences in <i>wiki-sentences</i></li>
+            <li>As mentioned in the task rules above: feel free to use the provided data, but feel equally free to use
+            any kind or amount of additional data (except for human judgments for the person-profession/nationalities
+            pairs in the <i>.all</i> files.</li>
+          </ul>
+        </div>
+      </div>
+          
+      <div class="panel panel-default">
+        <div class="panel-heading">Output / Test data</div>
+        <div class="panel-body">
+          <p>Your software will be evaluated on two test sets (one for professions and one for nationalities) of exactly the
+          same nature as the two trainings sets (the <i>.train</i> files) above. The test sets will be subsets of the
+          <i>.all</i> files above, but with scores like in the <i>.train</i> files.</p>
+          <p>Your software should produce an output exactly like in the <i>.train</i> files above. That is, given a test
+          file, append an additional column (tab-seperated, like for all files in this task) with the score, which
+          should be an integer from the range 0..7</p>
+        </div>
+      </div>
+        
       <div class="panel panel-default">
         <div class="panel-heading">Performance Measures</div>
         <div class="panel-body">
-          <p>Your relevance scores will be compared to a ground truth
-          obtained via human judges (just like for the training data).
-          Each triple (both from the training set and the test set) has
-          been judged by 7 human judges.  Each judgement is binary:
-          primarily relevant or secondarily relevant (note that all the
-          triples are "correct", so there is no category "irrelevant"
-          here). The 7 judgements per triple are combined to a relevance
-          score in the obvious way: divide the number of "primarily
-          relevant" judgments by 7. This gives a relevance score between 0
-          and 1 for each triple.</p>
+          <p>The scores in the train and test files are obtained via human judges. Each triple
+          (<i>&lt;person&gt; profession &lt;profession&gt;</i> or
+          <i>&lt;person&gt; nationalityity &lt;nationality&gt;</i>) has been judged by 7 human judges.  Each judgement
+          is binary: primarily relevant or secondarily relevant (all the triples are "correct", so there is no category
+          "irrelevant" here). The 7 judgements per triple are added up, which gives an integer score in the range
+          0..7.</p>
           
           <p>We evaluate three relevance measures, two score-based and one
           rank-based:</p>
@@ -166,8 +195,7 @@
 
           <p>Accuracy: the percentage of triples for which the scores
           computed by your system differe from the scores from the ground
-          truth by at most 2/7. (Recall: the scores in the ground
-          truth were computed from 7 binary relevance judgments.)</p>
+          truth by at most 2.</p>
 
           <p>Kendall's Tau: for each relation, for each subject, compute
           the ranking of all triples with that subject and
@@ -191,8 +219,8 @@
           </div>
         </div>
       </div>
-	</div>
-	
+        </div>
+        
   <div id="task-committee" class="row" style="padding-top:30px;">
     <div class="col-xs-12">
       <h1 class="page-header">Task Chairs</h1>
