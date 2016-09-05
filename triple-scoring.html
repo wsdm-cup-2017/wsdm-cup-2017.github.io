@@ -139,7 +139,7 @@
             <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/map-wiki2fb">map.wiki2fb</a></td>
                 <td>&nbsp;&nbsp;</td><td>a map from the 385,426 person names to their Freebase ids</td></tr>
             <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/wiki-sentences">wiki-sentences</a></td>
-                <td>&nbsp;&nbsp;</td><td>33,159,353 sentences from Wikipedia with annotations of the 385,426 person names above</td></tr>
+                <td>&nbsp;&nbsp;</td><td>33,159,353 sentences from Wikipedia with annotations of these 385,426 persons</td></tr>
           </table></p>
           <p><table>
             <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/triple-scoring.zip">triple-scoring.zip</a></td>
@@ -147,18 +147,30 @@
           </table></p>
           <p>Some more explanations:</p>
           <ul>
-            <li>When working on the task you will realize that the two training sets are not sufficient on their own,
-            but that you need additional data. In particular, there will be professions/nationalities in the test set
-            for which there is no example in the training set.</li>
-            <li>The training and test set contain only professions/nationalities from the <i>.all</i> files. (For the
-            training set you can verify it yourself, for the test set, we guarantuee it.)</li>
-            <li>The person names are <u>exactly</u> the names used by the Englisch Wikipedia. The training and test set
-            contain only person names from the <i>map.wiki2fb</i> file. The Freebase ids provided by that file are for
-            your convenience (for example, if you want to make use of a dataset like FACC1).</li>
-            <li>For each of these person names, there are sentences in <i>wiki-sentences</i></li>
-            <li>As mentioned in the task rules above: feel free to use the provided data, but feel equally free to use
-            any kind or amount of additional data (except for human judgments for the person-profession/nationalities
-            pairs in the <i>.all</i> files.</li>
+            <li>When working on the task you will realize that the two training
+            sets are not sufficient on their own, but that you need additional
+            data. In particular, there will be professions/nationalities in the
+            test set for which there is no example in the training set.</li>
+            <li>The training and test set contain only professions/nationalities
+            from the <i>.all</i> files. (For the training set you can verify it
+            yourself, for the test set, we guarantuee it.)</li> <li>The person
+            names are exactly the names used by the English Wikipedia. Tthat is,
+            http://en.wikipedia.org/wiki/&lt;person name&gt; takes you to the
+            respective Wikipedia page).
+            <li>The training and test set are guaranteed to contain only person
+            names from the <i>map.wiki2fb</i> file. The first column contains
+            the Wikipedia names, the second column contains the Freebase ids
+            (provided for your convenience, for example, if you want to make use
+            of a dataset like FACC1).</li>
+            <li>For each of these person names, there are sentences in
+            <i>wiki-sentences</i> (68,662 sentences for the most frequently
+            mentioned person, 3 sentences for the least frequently mentioned
+            person).</li>
+            <li>As mentioned in the task rules above:
+            feel free to use the provided data, but feel equally free to use any
+            kind or amount of additional data (except for human judgments for
+            the person-profession/nationalities pairs in the <i>.all</i>
+            files).</li>
           </ul>
         </div>
       </div>
@@ -166,25 +178,36 @@
       <div class="panel panel-default">
         <div class="panel-heading">Output / Test data</div>
         <div class="panel-body">
-          <p>Your software will be evaluated on two test sets (one for professions and one for nationalities) of exactly the
-          same nature as the two trainings sets (the <i>.train</i> files) above. The test sets will be subsets of the
-          <i>.all</i> files above, but with scores like in the <i>.train</i> files.</p>
-          <p>Your software should produce an output exactly like in the <i>.train</i> files above. That is, given a test
-          file, append an additional column (tab-seperated, like for all files in this task) with the score, which
-          should be an integer from the range 0..7</p>
+          <p>Your software will be evaluated on two test sets (one for
+          professions and one for nationalities) of exactly the same nature as
+          the two trainings sets (the <i>.train</i> files) above. The test sets
+          will be subsets of the <i>.all</i> files above, but with scores like
+          in the <i>.train</i> files.</p>
+          <p>Your software should produce an output exactly like in the
+          <i>.train</i> files above. That is, given a test file, append an
+          additional column (tab-seperated, like for all files in this task)
+          with the score, which should be an integer from the range 0..7</p>
+          <p>Your software will have to figure out itself whether it is being
+          fed the test file with professions or nationalities (see the section
+          below for the command line call). Since the set of the 200 professions and
+          the 100 nationalities are disjoint, this can be easily established by
+          looking at any one of the entries in the second column of the test
+          file.</p>
         </div>
       </div>
         
       <div class="panel panel-default">
         <div class="panel-heading">Performance Measures</div>
         <div class="panel-body">
-          <p>The scores in the train and test files are obtained via human judges. Each triple
-          (<i>&lt;person&gt; profession &lt;profession&gt;</i> or
-          <i>&lt;person&gt; nationalityity &lt;nationality&gt;</i>) has been judged by 7 human judges.  Each judgement
-          is binary: primarily relevant or secondarily relevant (all the triples are "correct", so there is no category
-          "irrelevant" here). The 7 judgements per triple are added up, which gives an integer score in the range
-          0..7.</p>
-          
+          <p>The scores in the train and test files have been obtained via
+          crowdsourcing. Each tuple (<i>&lt;person&gt; &lt;profession&gt;</i> or
+          <i>&lt;person&gt; &lt;nationality&gt;</i>) has been judged by 7 human judges.  Each judgement
+          is binary: primarily relevant (= 1) or secondarily relevant (= 0).
+          Note that all our tuples are "correct", so there is no category
+          "irrelevant" here (in the rare case that a tuple is incorrect, judges
+          will label it 0).
+          The 7 judgements per triple are added up, which gives an integer score in the range
+          0..7.
           <p>We evaluate three relevance measures, two score-based and one
           rank-based:</p>
           
@@ -203,6 +226,11 @@
           score from the ground truth. Compute the difference of the two
           rankings using Kendall's Tau. TODO: specify how to deal with
           ties in the ranking.</p>
+
+          <p>More details on the crowdsourcing task used to obtain the ground
+          truth scores, on the performance measures, and on a number of
+          baselines for solving the task can be found in the SIGIR paper cited
+          in the "Related Work" section below.</p>
         </div>
       </div>
 
@@ -218,37 +246,47 @@
             <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the WSDM Cup 2017. We agree not to share your software with a third party or use it for other purposes than the WSDM Cup 2017.</p>
           </div>
         </div>
-      </div>
-        </div>
         
-  <div id="task-committee" class="row" style="padding-top:30px;">
-    <div class="col-xs-12">
-      <h1 class="page-header">Task Chairs</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-6 col-sm-3">
-      <div class="thumbnail" style="text-align:center;">
-        <a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank"><img src="https://ad.informatik.uni-freiburg.de/bilder/HB17Mai14" class="img-rounded" alt="Hannah Bast" height="140"></a>
-        <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank">Hannah Bast</a></p>
-        <p style="font-size:10pt">University of Freiburg</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">Related Work</div>
+        <div class="panel-body">
+          <p>Hannah Bast, Björn Buchhold, and Elmar Haußmann.
+          <a href="http://ad-publications.informatik.uni-freiburg.de/SIGIR_triplescores_BBH_2015.pdf">Relevance Scores
+          for Triples from Type-Like Relations</a>. In SIGIR 2015: 243 -- 252.</p>
+          <p>Hannah Bast, Björn Buchhold, and Elmar Haußmann.
+          <a href="http://ad-publications.informatik.uni-freiburg.de/FNTIR_semanticsearch_BBH_2016.pdf">Semantic Search on 
+          Text and Knowledge Bases</a>. In FnTIR 10(2-3): 119 -- 271 (2016).</p>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <div class="thumbnail" style="text-align:center;">
-        <a href="http://ad.informatik.uni-freiburg.de/staff/buchhold" target="_blank"><img src="http://ad.informatik.uni-freiburg.de/bilder/Bjoern" class="img-rounded" alt="NN" height="140"></a>
-        <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/buchhold" target="_blank">Björn Buchhold</a></p>
-        <p style="font-size:10pt">University of Freiburg</p>
+
+      <div id="task-committee" class="row" style="padding-top:30px;">
+        <div class="col-xs-12">
+          <h1 class="page-header">Task Chairs</h1>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <div class="thumbnail" style="text-align:center;">
-        <a href="http://ad.informatik.uni-freiburg.de/staff/haussmann" target="_blank"><img src="http://ad.informatik.uni-freiburg.de/bilder/Elmar" class="img-rounded" alt="NN" height="140"></a>
-        <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/haussmann" target="_blank">Elmar Haussmann</a></p>
-        <p style="font-size:10pt">University of Freiburg</p>
+      <div class="row">
+        <div class="col-xs-6 col-sm-3">
+          <div class="thumbnail" style="text-align:center;">
+            <a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank"><img src="https://ad.informatik.uni-freiburg.de/bilder/HB17Mai14" class="img-rounded" alt="Hannah Bast" height="140"></a>
+            <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/bast" target="_blank">Hannah Bast</a></p>
+            <p style="font-size:10pt">University of Freiburg</p>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <div class="thumbnail" style="text-align:center;">
+            <a href="http://ad.informatik.uni-freiburg.de/staff/buchhold" target="_blank"><img src="http://ad.informatik.uni-freiburg.de/bilder/Bjoern" class="img-rounded" alt="NN" height="140"></a>
+            <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/buchhold" target="_blank">Björn Buchhold</a></p>
+            <p style="font-size:10pt">University of Freiburg</p>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <div class="thumbnail" style="text-align:center;">
+            <a href="http://ad.informatik.uni-freiburg.de/staff/haussmann" target="_blank"><img src="http://ad.informatik.uni-freiburg.de/bilder/Elmar" class="img-rounded" alt="NN" height="140"></a>
+            <p style="white-space:nowrap"><a href="http://ad.informatik.uni-freiburg.de/staff/haussmann" target="_blank">Elmar Haussmann</a></p>
+            <p style="font-size:10pt">University of Freiburg</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
   
 </div> <!-- /container -->
 
