@@ -106,12 +106,12 @@
       <div class="panel panel-default">
         <div class="panel-heading">Task Rules</div>
         <div class="panel-body">
-          <p>You are free to use the data provided in the next section, but you
-          do not have to use it, and you may use any kind or amount of other
+          <p>You are free to use all of the data provided in the next section, but you
+          do not have to use all of it, and you may use any kind or amount of other
           data as well.</p>
           <p>You are also free to use an arbitrary amount of computation.</p>
           <p>However, you should not generate or make use of large amounts of
-          human judgements, in addition to the (exemplary) ones provided in the
+          human judgements, in addition to the ones provided in the
           <i>.train</i> files in the next section.</p>
         </div>
       </div>
@@ -119,27 +119,30 @@
       <div class="panel panel-default">
         <div class="panel-heading">Input / Training data</div>
         <div class="panel-body">
-          <p>We provide the following text files. For the smaller files, you can 
-          just click on the link and look at the file in your browser. At the
-          end of the list is a link to a ZIP archive containing all the files.
-          Below the list we provide some more explanations.</p>
+          <p>We provide the following text files. You can just click on the link
+          and look at the file in your browser. At the end of the list is a link
+          to a ZIP archive containing all the files.  Below the list we provide
+          some more explanations.</p>
+          <p><i>Note: some of the filenames have been changed slightly on
+          16-09-2016.  The contents of the file is still exactly the same,
+          however. We think the new file names are clearer.</i></p>
           <p><table>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.train">profession.train</a></td>
-                <td>&nbsp;&nbsp;</td><td>a training set with 515 human judgments for 134 persons</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.all">profession.all</a></td>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.kb">profession.kb</a></td>
                 <td>&nbsp;&nbsp;</td><td>all professions for a set of 343,329 persons</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.list">profession.list</a></td>
-                <td>&nbsp;&nbsp;</td><td>a list of the 200 professions relevant for this task</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.train">nationality.train</a></td>
-                <td>&nbsp;&nbsp;</td><td>a training set with 162 human judgments for 77 persons</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.all">nationality.all</a></td>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/profession.train">profession.train</a></td>
+                <td>&nbsp;&nbsp;</td><td>relevance scores for 515 tuples (pertaining to 134 persons) from profession.kb</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.kb">nationality.kb</a></td>
                 <td>&nbsp;&nbsp;</td><td>all nationalities for a set of 301,590 persons</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.list">nationality.list</a></td>
-                <td>&nbsp;&nbsp;</td><td>a list of the 100 nationalities relevant for this task</td></tr>
-            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/map-wiki2fb">map.wiki2fb</a></td>
-                <td>&nbsp;&nbsp;</td><td>a map from the 385,426 person names to their Freebase ids</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationality.train">nationality.train</a></td>
+                <td>&nbsp;&nbsp;</td><td>relevance scores for 162 tuples (pertaining to 77 persons) from nationality.kb</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/professions">professions</a></td>
+                <td>&nbsp;&nbsp;</td><td>the 200 different professions from professions.kb (for your convenience)</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/nationalities">nationalities</a></td>
+                <td>&nbsp;&nbsp;</td><td>the 100 different nationalities from nationalities.kb (for your convenience)</td></tr>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/persons">persons</a></td>
+                <td>&nbsp;&nbsp;</td><td>385,426 different person names from the two .kb files and their Freebase ids (for your convenience)</td></tr>
             <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/wiki-sentences">wiki-sentences</a></td>
-                <td>&nbsp;&nbsp;</td><td>33,159,353 sentences from Wikipedia with annotations of these 385,426 persons</td></tr>
+                <td>&nbsp;&nbsp;</td><td>33,159,353 sentences from Wikipedia with annotations of these 385,426 persons (can but does not have to be used)</td></tr>
           </table></p>
           <p><table>
             <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/triple-scoring.zip">triple-scoring.zip</a></td>
@@ -147,22 +150,39 @@
           </table></p>
           <p>Some more explanations:</p>
           <ul>
+            <li>The two <i>.kb</i> files were extracted from a 14-04-2014 dump
+            of Freebase. This is not important for this task, however. Just in
+            case you were curious.</li>
+            <li>The training sets (the <i>.train</i> files provided above)
+            contain only tuples from the respective <i>.kb</i> files. The same
+            will hold true for the test sets (provided after the submission
+            deadline, and on which your submission will be evaluated).</li>
             <li>When working on the task you will realize that the two training
             sets are not sufficient on their own, but that you need additional
-            data. In particular, there will be professions/nationalities in the
-            test set for which there is no example in the training set.</li>
-            <li>The training and test set contain only professions/nationalities
-            from the <i>.all</i> files. (For the training set you can verify it
-            yourself, for the test set, we guarantuee it.)</li> <li>The person
-            names are exactly the names used by the English Wikipedia. Tthat is,
-            http://en.wikipedia.org/wiki/&lt;person name&gt; takes you to the
-            respective Wikipedia page).
-            <li>The training and test set are guaranteed to contain only person
-            names from the <i>map.wiki2fb</i> file. The first column contains
-            the Wikipedia names, the second column contains the Freebase ids
-            (provided for your convenience, for example, if you want to make use
-            of a dataset like FACC1).</li>
-            <li>For each of these person names, there are sentences in
+            data. In particular, there will be professions / nationalities in the
+            test set for which there is no tuple in the training set.</li>
+            <li>The <i>wiki-sentences</i> are just one example of such
+            additional data, provided above to make it easier for you to get
+            started. Feel free to use any other data instead or in
+            addition. The only thing you are not allowed to use is additional
+            training data generated from human judgement.</li>
+            <li>We limited the set of professions / nationalities to 200 / 100
+            to make the task feasible for you, since you probably want to learn
+            something for each profession / nationality.</li>
+            <li>The contents of the files <i>professions</i> and
+            <i>nationalities</i> is redundant and they are provided just for your
+            convenience. It's exactly the set of distinct professions /
+            nationalities in the second column of the two <i>.kb</i> files.</li>
+            <li>The file <i>person</i> contains a few person names that occur in
+            neither of the two .kb files. Does no harm though.</li>
+            <li>The person names are exactly the names used by the English
+            Wikipedia. That is, http://en.wikipedia.org/wiki/&lt;person
+            name&gt; takes you to the respective Wikipedia page.</li>
+            <li>The Freebase ids provided in the <i>persons</i> file might be
+            useful if you want to work with a dataset like FACC1 (which is
+            analagous to the <i>wiki-sentences</i> provided above, but for
+            ClueWeb instead of Wikipedia). You don't have to though.</li>
+            <li>For each of the names in <i>persons</i>, there are sentences in
             <i>wiki-sentences</i> (68,662 sentences for the most frequently
             mentioned person, 3 sentences for the least frequently mentioned
             person).</li>
