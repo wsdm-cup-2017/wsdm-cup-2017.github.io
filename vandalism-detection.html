@@ -226,12 +226,13 @@
           <pre class="prettyprint lang-c" style="overflow-x:auto">
   > mySoftware -d HOST_NAME:PORT -a AUTHENTICATION_TOKEN
   </pre>
+          <p>The host name, port and authentication token are needed for connecting to the server providing the evaluation data (see below).</p>
           <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
           <p><a class="btn btn-default" href="wsdm-cup-17-virtual-machine-user-guide.pdf">Virtual Machine User Guide »</a></p>
           <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
           <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the WSDM Cup 2017. We agree not to share your software with a third party or use it for other purposes than the WSDM Cup 2017.</p>
 		  
-		  <h3 style="font-size:13pt">Vandalism Scoring</h3>
+		  <h3 style="font-size:13pt">Receiving Evaluation Data</h3>
           <p>Your software will receive the uncompressed Wikidata revisions, and the uncompressed meta data via a TCP connection. Your program must send the results back via the same TCP connection. Conceptually, your program works with three byte streams
 		  <ol>
             <li>One stream provides uncompressed Wikidata revisions (in the same format as in the wdvc16_YYYY_MM.xml files)</li>
@@ -242,8 +243,7 @@
 		  <p>All three byte streams are send over a single TCP connection. The simple protocol is as follows:</p>
 		  <ol>
             <li>The client software connects to the server, sends the given authentication token, and terminates the line with '\r\n'</li>
-            <li>The server sends revisions and meta data in a multiplexed way to the client</li>
-			<li>
+            <li>The server sends revisions and meta data in a multiplexed way to the client
 			  <ol>
 			    <li>Number of meta bytes to be send (encoded as int32 in network byte order)</li>
                 <li>Meta bytes</li>
@@ -255,29 +255,26 @@
 			<li>The client closes the output socket as soon as there are no more scores to send</li>
           </ol>
 		  
-		  <p>The result must be formatted as a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions when reporting vandalism scores. More precisely, to enable fast and concurrent processing of data, we will introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k</var> as soon as having reported your result for revision <var>n</var> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions).</p>
+		  <p>The result must be formatted as a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions when reporting vandalism scores. More precisely, to enable fast and concurrent processing of data, we introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k</var> as soon as having reported your result for revision <var>n</var> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions).</p>
 		  
 		  <h3 style="font-size:13pt">Example Programs</h3>
 		  
-		  <p>You can find the data server that sends the revisions to your program as well as a simple client on the <a href="https://github.com/wsdm-cup-2017">WSDM Cup Github page</a>.</p>
+		  <p>You can find the data server as well as a demo client on the <a href="https://github.com/wsdm-cup-2017">WSDM Cup Github page</a>.</p>
 		  
 		  <h3 style="font-size:13pt">Getting Started</h3>
 		  <p>For those wondering how to get started, we recommend the following steps:</p>
 		  
 		  <ol>
-		    <li>For training (on your own machine)</li>
-			<li>
+		    <li>For training (on your own machine)
 			  <ol>
 		        <li>Extract features from the provided training data</li>
 			    <li>Train a classifier on those features and store the classifier in a file</li>
 			  </ol>
-			<li>
-			<li>For evaluation (on TIRA)</li>
-			<li>
+			</li>
+			<li>For evaluation (on TIRA)
 			  <ol>
 			    <li>Load the classifier from the file</li>
-                <li>For every revision of the evaluation dataset</li>
-                <li>
+                <li>For every revision of the evaluation dataset
 				  <ol>
                     <li>Extract features (in the same way as during training)</li>
                     <li>Compute a vandalism score with the classifier</li>
