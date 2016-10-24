@@ -203,16 +203,31 @@
           the two trainings sets (the <i>.train</i> files) above. The test sets
           will be subsets of the <i>.all</i> files above, but with scores like
           in the <i>.train</i> files.</p>
+
           <p>Your software should produce an output exactly like in the
           <i>.train</i> files above. That is, given a test file, append an
           additional column (tab-seperated, like for all files in this task)
           with the score, which should be an integer from the range 0..7</p>
-          <p>Your software will have to figure out itself whether it is being
-          fed the test file with professions or nationalities (see the section
-          below for the command line call). Since the set of the 200 professions and
-          the 100 nationalities are disjoint, this can be easily established by
-          looking at any one of the entries in the second column of the test
-          file.</p>
+
+          <p>Your software has to figure out whether it is being fed the test
+          file with professions or nationalities (see the section below for the
+          command line call). It can tell this from the base of the file name,
+          that is, the part before the first dot. The base names of the test
+          sets will be <i>profession</i> and <i>nationality</i>, just as for the
+          training sets above.</p>
+
+          <p>Here is the script that we will use for the evaluation, and that
+          (of course) you can use, too:
+          
+          <p><table>
+            <tr><td><a href="http://broccoli.cs.uni-freiburg.de/wsdm-cup-2017/evaluator.py">evaluator.py</a></td>
+          </table></p>
+          
+          It is written in Python3. You get a short usage info with <i>python
+            evaluator.py -h</i>, and a longer explanation in the comment at the
+          beginning of the script. The script also tests whether the formatting
+          of the input files is correct, and if not, tells you how and where
+          not. The three measures evaluated are explained in the next section. 
         </div>
       </div>
         
@@ -244,9 +259,9 @@
           the ranking of all triples with that subject and
           relation according to the scores computed by your system and the
           score from the ground truth. Compute the difference of the two
-          rankings using Kendall's Tau. TODO: specify how to deal with
-          ties in the ranking.</p>
-
+          rankings using Kendall's Tau. See the (well-documented) code of
+          the <i>evaluator.py</i> script above for how ties are handled.</p>
+          
           <p>More details on the crowdsourcing task used to obtain the ground
           truth scores, on the performance measures, and on a number of
           baselines for solving the task can be found in the SIGIR paper cited
@@ -258,8 +273,27 @@
         <div class="panel-heading">Submission</div>
           <div class="panel-body">
             <p>We ask you to prepare your software so that it can be executed via a command line call.</p>
+
+            <p>
             <pre class="prettyprint lang-c" style="overflow-x:auto">
- > mySoftware <b>-i</b> path/to/input/dataset <b>-o</b> path/to/output/directory</pre>
+ > mySoftware <b>-i</b> path/to/input/run <b>-o</b> path/to/output/directory</pre></p>
+
+            <p>The name of the output file (to be written to the
+            <i>path/to/output/directory</i> folder) must be the same as the name
+            of the input file. There can be more than one <b>-i</b> argument. In that case your
+            software should process each of the runs and produce an output one
+            file for each.</p>
+
+            <p>For example, if your software is called like this:
+
+            <p><pre class="prettyprint lang-c" style="overflow-x:auto">
+ > mySoftware <b>-i</b> /dataset/profession.test <b>-i</b> /dataset/nationality.test <b>-o</b> /output</pre></p>
+
+            <p>It should write files <i>profession.test</i> and
+            <i>nationality.test</i> to the folder <i>/output</i>, and the
+            two files should be identical to the two input files, except that they
+            contain an additional column with the scores (from the integer range 0..7).</p>
+
             <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
             <p><a class="btn btn-default" href="wsdm-cup-17-virtual-machine-user-guide.pdf">Virtual Machine User Guide »</a></p>
             <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
