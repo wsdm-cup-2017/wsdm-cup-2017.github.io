@@ -10,9 +10,10 @@ Prepared for the Workshop: 	2nd WSDM Cup at the ACM WSDM Conference on
 Web Search and Data Mining (WSDM Cup 2017)
 
 I hereby grant non-exclusive and non-time limited publication permissions over 
-the above-named material (the Material) to the following personals (hereinafter 
-the editors/publishers): Stefan Heindorf, Martin Potthast, Hannah Bast,
-Björn Buchhold, and Elmar Haussmann
+the above-named material (the Material) including but not limited to
+written material, figures, source code, software, and data to the following
+personals (hereinafter the editors/publishers):
+Stefan Heindorf, Martin Potthast, Hannah Bast, Björn Buchhold, and Elmar Haussmann
 
 In order to include in any and all forms, compile, publish, print, distribute 
 and spread such a work with the unique aim of making it as accessible as 
