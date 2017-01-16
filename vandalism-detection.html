@@ -300,32 +300,43 @@
         </div>
     </div>
     
-    <!--
+    
     <div class="panel panel-default">
         <div class="panel-heading">Results</div>
         <div class="panel-body">
-          <p>The following table lists the performances achieved by the participating teams:</p>
-          <table class="table table-condensed rule" style="font-size:small;">
-          <thead>
-          <tr class="top"><th colspan="5" style="text-align:center">Source Retrieval Performance</th></tr>
-          <tr class="top2"><th colspan="2" style="text-align:center">Workload to 1st Detection</th><th colspan="2" style="text-align:center">Downloaded Sources</th><th>Team</th></tr>
-          <tr class="mid"><th>Queries</th><th>Downloads</th><th>Precision</th><th>Recall</th><th></th></tr>
-          </thead>
-          <tbody>
-          <tr><td> 54.5</td><td> 33.2</td><td>0.40</td><td>0.39</td><td>Victoria Elizalde<br/>Private, Argentina</td></tr>
-          <tr><td> 83.5</td><td>207.1</td><td>0.08</td><td>0.48</td><td>Leilei Kong, Yong Han, Zhongyuan Han, Haihao Yu, Qibo Wang, Tinglei Zhang , Haoliang Qi<br/>Heilongjiang Institute of Technology, China</td></tr>
-          <tr><td> 60.0</td><td> 38.8</td><td>0.38</td><td>0.51</td><td>Amit Prakash and Sujan kumar Saha<br/>Birla Institute of Technology, India</td></tr>
-          <tr><td> 19.5</td><td>237.3</td><td>0.08</td><td>0.40</td><td>Šimon Suchomel and Michal Brandejs<br/>Masaryk University, Czech Republic</td></tr>
-          <tr><td>117.1</td><td> 14.4</td><td>0.57</td><td>0.48</td><td>Kyle Williams, Hung-Hsuan Chen, and C. Lee Giles<br/>Pennsylvania State University, USA</td></tr>
-          <tr><td> 37.0</td><td> 18.6</td><td>0.54</td><td>0.45</td><td>Denis Zubarev° and Ilya Sochenkov*<br/>°Institute for Systems Analysis of Russian Academy of Sciences and *Peoples’ Friendship University of Russia, Russia</td></tr>
-          </tbody>
-          </table>
+            <p>The following table lists the performances achieved by the participating teams:</p>
+            <table class="table table-condensed table-striped rule" style="font-size:small;" id="results-table-vandalism-detection">
+                <thead>
+                    <tr class="mid">
+                         <th class="sort-desc">ROC</th><th>PR</th><th>ACC</th><th>P</th><th>R</th><th>F</th><th>Runtime</th><th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>0.94702</strong></td><td>0.45757</td><td>0.99909</td><td>0.68197</td><td>0.26370</td><td>0.38033</td><td>17:11:16</td><td><strong>Buffaloberry</strong><br/>Rafael Crescenzi, Pablo Albani, Diego Tauziet, Andrés Sebastián D'Ambrosio, Adriana Baravalle, Marcelo Fernandez, Federico Alejandro Garcia Calabria<br/><em>Austral University, Argentina</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.93708</strong></td><td>0.35230</td><td>0.99900</td><td>0.67528</td><td>0.09943</td><td>0.17334</td><td>02:47:50</td><td><strong>Conkerberry</strong><br/>Alexey Grigorev<br/><em>Searchmetrics, Germany</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.91976</strong></td><td>0.33738</td><td>0.92850</td><td>0.01125</td><td>0.76682</td><td>0.02218</td><td>104:47:30</td><td><strong>Loganberry</strong><br/>Qi Zhu, Bingjie Jiang, Liyuan Liu, Jiaming Shen, Ziwei Ji, Hong Wei Ng, Jinwen Xu, Huan Gui <br/><em>University of Illinois at Urbana-Champaign, United States</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.90487</strong></td><td>0.16181</td><td>0.98793</td><td>0.06104</td><td>0.72444</td><td>0.11259</td><td>26:37:29</td><td><strong>Honeyberry</strong><br/>Nishi Kentaro, Iwasawa Hiroki, Makabe Takuya, Murakami Naoya, Sakurada Ryota, Sasaki Mei, Yaku Shinya, Yamazaki Tomoya<br/><em>Yahoo Japan Corporation, Japan</em></td> 
+                    </tr>
+                    <tr>
+                        <td><strong>0.89403</strong></td><td>0.17433</td><td>0.99501</td><td>0.10298</td><td>0.48275</td><td>0.16975</td><td>189:16:03</td><td><strong>Riberry</strong><br/>Tuo Yu, Yuhang Wang, Yiran Zhao, Xin Ma‎, Xiaoxiao Wang, Yiwen Xu, Huajie Shao, Dipannita Dey, Honglei Zhuang, Huan Gui, Fangbo Tao<br/><em>University of Illinois at Urbana-Champaign, United States</em></td> 
+                    </tr>
+                </tbody>
+        </table>
+        <!--
           <p>A more detailed analysis of the retrieval performances can be found in the overview paper accompanying this task.</p>
           <p>
             <a class="btn btn-default" href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf#page=11">Learn more »</a>
           </p>
+        -->
         </div>
-      </div>-->
+      </div>
       
 
       
@@ -403,6 +414,8 @@
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/prettify.js"></script>
+<script src="js/jquery-datatables.min.js"></script>
+
 <script>
   !function ($) {
     $(function(){
@@ -421,6 +434,17 @@
   ga('send', 'pageview');
 
 </script>
+
+<!--<script type="text/javascript">
+$(document).ready(function() {
+    $('#results-table-vandalism-detection').DataTable(
+    {
+        searching: false,
+        paging: false
+    });
+});
+</script>
+-->
 
 </body>
 </html>
