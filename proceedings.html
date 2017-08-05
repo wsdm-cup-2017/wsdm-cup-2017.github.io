@@ -49,10 +49,10 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">Organization</a></li>
         <li><a href="about.html#important-dates">Important Dates</a></li>
-        <!--<li><a href="proceedings.html">Proceedings</a></li>-->
+        <li class="active"><a href="proceedings.html">Proceedings</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -77,13 +77,6 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <h3>The proceedings will be published after the workshop.</h3>
-  </div>
-</div>
-
-<!--
-<div class="row">
-  <div class="col-xs-12">
     <h3>Overview Papers</h3>
   </div>
 </div>
@@ -104,48 +97,23 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <h3>Plagiarism Detection: Source Retrieval</h3>
+    <h3>Wikidata Vandalism Detection</h3>
   </div>
 </div>
 
 <div class="row">
-  <div id="proceedings-notebooks-source-retrieval" class="col-xs-12"></div>
+  <div id="proceedings-notebooks-wikidata-vandalism" class="col-xs-12"></div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
-    <h3>Plagiarism Detection: Text Alignment</h3>
+    <h3>Triple Scoring</h3>
   </div>
 </div>
 
 <div class="row">
-  <div id="proceedings-notebooks-text-alignment" class="col-xs-12"></div>
+  <div id="proceedings-notebooks-triple-scoring" class="col-xs-12"></div>
 </div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <h3>Authorship Verification</h3>
-  </div>
-</div>
-
-<div class="row">
-  <div id="proceedings-notebooks-authorship-verification" class="col-xs-12"></div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <h3>Author Profiling: Age Prediction, Gender Prediction, and Personality Prediction</h3>
-  </div>
-</div>
-
-<div class="row">
-  <div id="proceedings-notebooks-author-profiling" class="col-xs-12"></div>
-</div>
-
-<footer>
-  <p class="pull-right">© pan.webis.de</p>
-</footer>
--->
 
 </div> <!-- /container -->
 
@@ -161,20 +129,16 @@
 </script>
 
 <script>
-var urlOverview = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,overview&exclude=talk";
-var urlTalks    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,talk";
-var urlTask1    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,source-retrieval&exclude=overview";
-var urlTask2    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,text-alignment&exclude=overview";
-var urlTask3    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,authorship-verification&exclude=overview";
-var urlTask4    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=clef,2016,author-profiling&exclude=overview";
+var urlOverview = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=wsdm,2017,overview&exclude=talk";
+var urlTalks    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=wsdm,2017,talk";
+var urlTask1    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=wsdm,2017,wikidata-vandalism&exclude=overview";
+var urlTask2    = "http://www.uni-weimar.de/medien/webis/publications/pub-database-pan.php?filter=by-tags&tags=wsdm,2017,triple-scoring&exclude=overview";
 
 $(document).ready(function() {
   fetchPublicationsViewHtml(urlOverview, "#proceedings-overviews");
   fetchPublicationsViewHtml(urlTalks, "#proceedings-talks");
-  fetchPublicationsViewHtml(urlTask1, "#proceedings-notebooks-source-retrieval");
-  fetchPublicationsViewHtml(urlTask2, "#proceedings-notebooks-text-alignment");
-  fetchPublicationsViewHtml(urlTask3, "#proceedings-notebooks-authorship-verification");
-  fetchPublicationsViewHtml(urlTask4, "#proceedings-notebooks-author-profiling");
+  fetchPublicationsViewHtml(urlTask1, "#proceedings-notebooks-wikidata-vandalism");
+  fetchPublicationsViewHtml(urlTask2, "#proceedings-notebooks-triple-scoring");
 });
 
 function fetchPublicationsViewHtml(url, selector) {
@@ -199,7 +163,6 @@ function fetchPublicationsViewHtml(url, selector) {
 
   ga('create', 'UA-19597677-4', 'auto');
   ga('send', 'pageview');
-
 </script>
 
 </body>
