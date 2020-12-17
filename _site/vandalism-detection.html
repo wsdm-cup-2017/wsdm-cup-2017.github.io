@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WSDM Cup 2017</title> 
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/prettify.css" rel="stylesheet" />
+
+<style>
+.navbar .navbar-nav {
+  font-weight: bold;
+}
+</style>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="img/icon-wsdm.png">
+<!--
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+-->
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom:0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">WSDM Cup 2017</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Organization</a></li>
+        <li><a href="about.html#important-dates">Important Dates</a></li>
+        <li><a href="proceedings.html">Proceedings</a></li>
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="vandalism-detection.html">Vandalism Detection</a></li>
+            <li><a href="triple-scoring.html">Triple Scoring</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <h1 id="task-description" class="page-header">
+          Vandalism Detection
+          <div class="thumbnail pull-right" style="text-align:right;margin-left:15px;"><a href="http://www.adobe.com/" target="_blank"><img src="img/logo-adobe.png" alt="Adobe" style="max-height:150px"></a><div style="font-size:7pt;margin-right:10px;margin-top:2px;">Sponsor</div></div>
+        <div class="thumbnail pull-right" style="text-align:right;margin-left:15px;"><a href="http://www.wikimedia.de/" target="_blank"><img src="img/logo-wikimedia-germany.svg" alt="Wikimedia Germany Logo" style="height:150px"></a><div style="font-size:7pt;margin-right:85px;">Supporter</div></div>
+        </h1>
+        
+        <p><a href="https://www.wikidata.org/">Wikidata</a> is the new, large-scale knowledge base of the Wikimedia Foundation which can be edited by anyone. Its knowledge is increasingly used within Wikipedia as well as in all kinds of information systems, which imposes high demands on its integrity. Nevertheless, Wikidata frequently gets vandalized, exposing all its users to the risk of spreading vandalized and falsified information.</p>
+      </div>
+      
+      <div class="panel panel-default" id="task">
+        <div class="panel-heading">Task</div>
+        <div class="panel-body">
+          <p>Given a Wikidata revision, compute a vandalism score denoting the likelihood of this revision being vandalism (or similarly damaging).</p>
+        </div>
+      </div>
+
+	    <div class="panel panel-default" id="awards">
+        <div class="panel-heading">Awards</div>
+        <div class="panel-body">
+          <p>The three best-performing approaches submitted by eligible participants as per the performance measures used for this task will receive the following awards, kindly   sponsored by Adobe Systems, Inc.:</p>
+          <ol>
+            <li>$1500 for the best-performing approach,</li>
+            <li>$750 for the second best-performing approach, and</li>
+            <li>$500 for the third best-performing approach.</li>
+          </ol>
+          <p>Furthermore, Wikimedia Germany supports the transfer of the scientific insights gained in this task by inviting the eligible participants who submitted the best-performing approaches to visit them for a couple of days in order to work together on planning a potential integration of the approach into Wikidata.</p>
+        </div>
+      </div>
+	  
+	    <div class="panel panel-default" id="task-rules">
+        <div class="panel-heading">Task Rules</div>
+        <div class="panel-body">
+          <p>The goal of the vandalism detection task is to detect vandalism nearly in real time as soon as it happens. Hence, the following rules apply:</p>
+          <ul>
+            <li>Use of any additional data that is newer than the provided training data is forbidden. In particular, you <b>may not</b> scrape any Wikimedia website, use the API, the dumps, or any related data source to obtain data that is newer than February 29, 2016.</li>
+            <li><b>You may</b> use sources of publicly available external data having to do with geographical information, demographic information, natural language processing, etc. This data must not relate to the specific revision label (vandalism vs regular).</li>
+          </ul>
+        </div>
+      </div>
+	  
+      
+      <div class="panel panel-default" id="corpus-wdvc-16">
+        <div class="panel-heading">Wikidata Vandalism Corpus 2016 Training Dataset</div>
+        <div class="panel-body">
+          <p>To develop your software, we provide you with a training corpus that consists of Wikidata revisions and whether they are considered vandalism.<p>
+          <p>The Wikidata Vandalism Corpus 2016 contains revisions of the knowledge base Wikidata. The corpus comprises manual revisions only, while all revisions by official bots were filtered out. For each revision, we provide the information whether it is considered vandalism (ROLLBACK_REVERTED) or not. Unlike the Wikidata dumps, revisions are ordered chronologically by REVISION_ID (i.e., in the order they arrived at Wikidata). For training, we provide data until February 29, 2016. The evaluation will be conducted on later data.</p>
+          <p>The provided training data consists of 23 files in total. You can check their validty via their <a href="https://doi.org/10.5281/zenodo.3905931">md5</a> checksums.</p>
+          <h4>Revision Data Files (21 files)</h4>
+          <ul>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2012_10.xml.7z">wdvc16_2012_10.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(18 MB)</li> 
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2012_11.xml.7z">wdvc16_2012_11.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(98 MB)</li> 
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_01.xml.7z">wdvc16_2013_01.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(129 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_03.xml.7z">wdvc16_2013_03.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(367 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_05.xml.7z">wdvc16_2013_05.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(466 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_07.xml.7z">wdvc16_2013_07.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(451 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_09.xml.7z">wdvc16_2013_09.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(442 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2013_11.xml.7z">wdvc16_2013_11.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(482 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_01.xml.7z">wdvc16_2014_01.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(576 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_03.xml.7z">wdvc16_2014_03.xml.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;(589 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_05.xml.7z">wdvc16_2014_05.xml.7z</a> &nbsp;(1,022 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_07.xml.7z">wdvc16_2014_07.xml.7z</a> &nbsp;(1,349 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_09.xml.7z">wdvc16_2014_09.xml.7z</a> &nbsp;(1,430 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2014_11.xml.7z">wdvc16_2014_11.xml.7z</a> &nbsp;(1,237 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_01.xml.7z">wdvc16_2015_01.xml.7z</a> &nbsp;(1,291 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_03.xml.7z">wdvc16_2015_03.xml.7z</a> &nbsp;(1,582 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_05.xml.7z">wdvc16_2015_05.xml.7z</a> &nbsp;(1,266 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_07.xml.7z">wdvc16_2015_07.xml.7z</a> &nbsp;(1,335 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_09.xml.7z">wdvc16_2015_09.xml.7z</a> &nbsp;(1,752 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2015_11.xml.7z">wdvc16_2015_11.xml.7z</a> &nbsp;(3,130 MB)</li>
+            <li><a href="https://zenodo.org/record/3905932/files/wdvc16_2016_01.xml.7z">wdvc16_2016_01.xml.7z</a> &nbsp;(3,332 MB)</li>
+          </ul>
+          <h4>Meta File  (1 File)</h4>
+            <ul>
+              <li><a href="https://zenodo.org/record/3905932/files/wdvc16_meta.csv.7z">wdvc16_meta.csv.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(168 MB)</li>
+            </ul>
+            <table class="table table-condensed rule"  style="font-size:small;">
+              <thead>
+                <tr><th>Name</th><th>Types</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>REVISION_ID        </td><td>Integer            </td><td> The Wikidata revision id                                             </td></tr>
+                <tr><td>REVISION_SESSION_ID</td><td>Integer            </td><td> The Wikidata revision id of the first revision in this session       </td></tr>
+                <tr><td>USER_COUNTRY_CODE  </td><td>String             </td><td> Country code for IP address (only available for unregistered users)  </td></tr>
+                <tr><td>USER_CONTINENT_CODE</td><td>String             </td><td> Continent code for IP address (only available for unregistered users)</td></tr>
+                <tr><td>USER_TIME_ZONE     </td><td>String             </td><td> Time zone for IP address (only available for unregistered users)     </td></tr>
+                <tr><td>USER_REGION_CODE   </td><td>String             </td><td> Region code for IP address (only available for unregistered users)   </td></tr>
+                <tr><td>USER_CITY_NAME     </td><td>String             </td><td> City name for IP address (only available for unregistered users)     </td></tr>
+                <tr><td>USER_COUNTY_NAME   </td><td>String             </td><td> County name for IP address (only available for unregistered users)   </td></tr>
+                <tr><td>REVISION_TAGS      </td><td>List&lt;String&gt; </td><td> The Wikidata revision tags                                           </td></tr>
+              </tbody>
+            </table>
+           <h4>Truth File (1 File)</h4>
+             <ul>
+               <li><a href="https://zenodo.org/record/3905932/files/wdvc16_truth.csv.7z">wdvc16_truth.csv.7z</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(44 MB)</li>
+             </ul>
+             <table class="table table-condensed rule"  style="font-size:small;">
+               <thead>
+                <tr><th>Name</th><th>Types</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                 <tr><td>REVISION_ID          </td><td>Integer</td><td>The Wikidata revision id                                           </td></tr>
+                 <tr><td>ROLLBACK_REVERTED    </td><td>Boolean</td><td>Whether this revision was reverted via the rollback feature        </td></tr>
+                 <tr><td>UNDO_RESTORE_REVERTED</td><td>Boolean</td><td>Whether this revision was reverted via the undo/restore feature    </td></tr>
+              </tbody>
+            </table>
+            <p>The ROLLBACK_REVERTED field encodes the official ground truth for this competition. The UNDO_RESTORE_REVERTED field serves informational purposes only.</p>
+            <p>The truth file will only be available for the training dataset but not for test datasets.</p>
+            <p> The corpus can be processed, for example, with <a href="https://www.mediawiki.org/wiki/Wikidata_Toolkit">Wikidata Toolkit</a>.</p>
+        </div>
+      </div>
+	  
+	  <div class="panel panel-default" id="corpus-wdvc-16-validation">
+        <div class="panel-heading">Wikidata Vandalism Corpus 2016 Validation Dataset</div>
+        <div class="panel-body">
+			<p>For validating your software, we provide you with a validation dataset that encompasses the two months succeeding the training dataset. The provided validation data consists of 3 files and you can check their validty via their <a href="https://doi.org/10.5281/zenodo.3905931">md5</a> checksums.</p>
+			<ul>
+				<li>Revisions: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_03.xml.7z">wdvc16_2016_03.xml.7z</a> &nbsp;(3,067 MB)</li>
+				<li>Meta File: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_03_meta.csv.7z">wdvc16_2016_03_meta.csv.7z</a> &nbsp;(20 MB)</li>
+				<li>Truth File: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_03_truth.csv.7z">wdvc16_2016_03_truth.csv.7z</a> &nbsp;(4 MB)</li>
+			</ul>
+			
+        </div>
+      </div>
+	  
+	  <div class="panel panel-default" id="corpus-wdvc-16-test">
+        <div class="panel-heading">Wikidata Vandalism Corpus 2016 Test Dataset</div>
+        <div class="panel-body">
+			<p>For the final evaluation of submissions, we used the two months of data succeeding the validation dataset. The data was not  publicly released until after the submission deadline. The test data consists of 3 files and you can check their validty via their <a href="https://doi.org/10.5281/zenodo.3905931">md5</a> checksums.</p>
+			<ul>
+				<li>Revisions: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_05.xml.7z">wdvc16_2016_05.xml.7z</a> &nbsp;(2,726 MB)</li>
+				<li>Meta File: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_05_meta.csv.7z">wdvc16_2016_05_meta.csv.7z</a> &nbsp;(30 MB)</li>
+				<li>Truth File: <a href="https://zenodo.org/record/3905932/files/wdvc16_2016_05_truth.csv.7z">wdvc16_2016_05_truth.csv.7z</a> &nbsp;(5 MB)</li>
+			</ul>
+			
+        </div>
+      </div>
+
+      <div class="panel panel-default" id="output">
+        <div class="panel-heading">Output</div>
+        <div class="panel-body">
+          <p>For each Wikidata revision in the test corpus, your software shall output a vandalism score in the range [0,1]. The output shall be formatted as a CSV file in the format <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> and consist of two columns: The first column denotes Wikidata's revision id as an integer and the second column denotes the vandalism score as a float32. Here are a few example rows:</p>
+
+          <table class="table table-condensed rule"  style="font-size:small;">
+            <thead>
+              <tr><th>Revision Id</th><th>Vandalism Score</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>123</td><td>0.95</td></tr>
+              <tr><td>124</td><td>0.30</td></tr>
+              <tr><td>125</td><td>12.e-5</td></tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    
+    <div class="panel panel-default" id="performance-measures">
+        <div class="panel-heading">Performance Measures</div>
+        <div class="panel-body">
+        <p>For determining the winner, we use ROC-AUC as primary evaluation measure.</p>
+        
+        <p>For informational purposes, we might compute further evaluation measures such as PR-AUC and the runtime of the software.</p>
+      </div>
+    </div>
+    
+    <div class="panel panel-default" id="test-corpus">
+    <div class="panel-heading">Test Corpus</div>
+      <div class="panel-body">
+        <p>Once you finished tuning your approach to achieve satisfying performance on the training corpus, you should run your software on the test corpus.</p>
+        <p>During the competition, the test corpus will not be released publicly. Instead, we ask you to submit your software for evaluation at our site as described below.</p>
+        <p>After the competition, the test corpus is available including ground truth data. This way, you have all the necessities to evaluate your approach on your own, yet being comparable to those who took part in the competition.</p>
+        <!--<p>
+            <a class="btn btn-default" target="_blank" href="http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-14/pan14-data/">Download corpus</a>
+          </p>-->
+      </div>
+    </div>
+    
+    <div class="panel panel-default" id="submission">
+     <div class="panel-heading">Submission</div>
+        <div class="panel-body">
+          <p>We ask you to prepare your software so that it can be executed via a command line call with the following parameters.</p>
+          <pre class="prettyprint lang-c" style="overflow-x:auto">
+  > mySoftware -d HOST_NAME:PORT -a AUTHENTICATION_TOKEN
+  </pre>
+          <p>The host name, port and authentication token are needed for connecting to the server providing the evaluation data (see below).</p>
+          <p>You can choose freely among the available programming languages and among the operating systems Microsoft Windows and Ubuntu. We will ask you to deploy your software onto a virtual machine that will be made accessible to you after registration. You will be able to reach the virtual machine via ssh and via remote desktop. More information about how to access the virtual machines can be found in the user guide below:</p>
+          <p><a class="btn btn-default" href="wsdm-cup-17-virtual-machine-user-guide.pdf">Virtual Machine User Guide »</a></p>
+          <p>Once deployed in your virtual machine, we ask you to access TIRA at <a href="http://www.tira.io">www.tira.io</a>, where you can self-evaluate your software on the test data.</p>
+          <p><strong>Note:</strong> By submitting your software you retain full copyrights. You agree to grant us usage rights only for the purpose of the WSDM Cup 2017. We agree not to share your software with a third party or use it for other purposes than the WSDM Cup 2017.</p>
+		  
+		  <h3 style="font-size:13pt">Receiving Evaluation Data</h3>
+          <p>Your software will receive the uncompressed Wikidata revisions, and the uncompressed meta data via a TCP connection. Your program must send the results back via the same TCP connection. Conceptually, your program works with three byte streams
+		  <ol>
+            <li>One stream provides uncompressed Wikidata revisions (in the same format as in the wdvc16_YYYY_MM.xml files)</li>
+            <li>One stream provides uncompressed meta data (in the same format as in the wdvc16_meta.csv files)</li>
+            <li>One stream receives the vandalism scores (as specified in the output format on the WSDM Cup website)</li>
+          </ol>
+		   
+		  <p>All three byte streams are send over a single TCP connection. The simple protocol is as follows:</p>
+		  <ol>
+            <li>The client software connects to the server, sends the given authentication token, and terminates the line with '\r\n'</li>
+            <li>The server sends revisions and meta data in a multiplexed way to the client
+			  <ol>
+			    <li>Number of meta bytes to be send (encoded as int32 in network byte order)</li>
+                <li>Meta bytes</li>
+                <li>Number of revision bytes to be send (encoded as int32 in network byte order)</li>
+                <li>Revision bytes</li>
+			  </ol>
+			</li>
+            <li>The server closes the output socket as soon as there is no more data to send (half close)</li>
+			<li>The client closes the output socket as soon as there are no more scores to send</li>
+          </ol>
+		  
+		  <p>The result must be formatted as a RFC4180 CSV file containing the two columns REVISION_ID and VANDALISM_SCORE. You will only receive new revisions when reporting vandalism scores. More precisely, to enable fast and concurrent processing of data, we introduce a backpressure window of <var>k</var> revisions, i.e., you will receive revision <var>n + k</var> as soon as having reported your result for revision <var>n</var> (the exact constant <var>k</var> is still to be determined but you can expect it to be around <var>16</var> revisions).</p>
+		  
+		  <h3 style="font-size:13pt">Example Programs</h3>
+		  
+		  <p>You can find the data server as well as a demo client on the <a href="https://github.com/wsdm-cup-2017">WSDM Cup Github page</a>.</p>
+		  
+		  <h3 style="font-size:13pt">Getting Started</h3>
+		  <p>For those wondering how to get started, we recommend the following steps:</p>
+		  
+		  <ol>
+		    <li>For training (on your own machine)
+			  <ol>
+		        <li>Extract features from the provided training data</li>
+			    <li>Train a classifier on those features and store the classifier in a file</li>
+			  </ol>
+			</li>
+			<li>For evaluation (on TIRA)
+			  <ol>
+			    <li>Load the classifier from the file</li>
+                <li>For every revision of the evaluation dataset
+				  <ol>
+                    <li>Extract features (in the same way as during training)</li>
+                    <li>Compute a vandalism score with the classifier</li>
+                    <li>Output the vandalism score</li>
+                  </ol>	
+                </li>				  
+			  </ol>
+			</li>
+		  </ol>
+        </div>
+    </div>
+    
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">Results</div>
+        <div class="panel-body">
+            <p>The following table lists the performances achieved by the participating teams:</p>
+            <table class="table table-condensed table-striped rule" style="font-size:small;" id="results-table-vandalism-detection">
+                <thead>
+                    <tr class="mid">
+                         <th class="sort-desc">ROC</th><th>PR</th><th>ACC</th><th>P</th><th>R</th><th>F</th><th>Runtime</th><th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>0.94702</strong></td><td>0.45757</td><td>0.99909</td><td>0.68197</td><td>0.26370</td><td>0.38033</td><td>17:11:16</td><td><strong>Buffaloberry</strong><br/>Rafael Crescenzi, Pablo Albani, Diego Tauziet, Andrés Sebastián D'Ambrosio, Adriana Baravalle, Marcelo Fernandez, Federico Alejandro Garcia Calabria<br/><em>Austral University, Argentina</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.93708</strong></td><td>0.35230</td><td>0.99900</td><td>0.67528</td><td>0.09943</td><td>0.17334</td><td>02:47:50</td><td><strong>Conkerberry</strong><br/>Alexey Grigorev<br/><em>Searchmetrics, Germany</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.91976</strong></td><td>0.33738</td><td>0.92850</td><td>0.01125</td><td>0.76682</td><td>0.02218</td><td>104:47:30</td><td><strong>Loganberry</strong><br/>Qi Zhu, Bingjie Jiang, Liyuan Liu, Jiaming Shen, Ziwei Ji, Hong Wei Ng, Jinwen Xu, Huan Gui <br/><em>University of Illinois at Urbana-Champaign, United States</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0.90487</strong></td><td>0.16181</td><td>0.98793</td><td>0.06104</td><td>0.72444</td><td>0.11259</td><td>26:37:29</td><td><strong>Honeyberry</strong><br/>Nishi Kentaro, Iwasawa Hiroki, Makabe Takuya, Murakami Naoya, Sakurada Ryota, Sasaki Mei, Yaku Shinya, Yamazaki Tomoya<br/><em>Yahoo Japan Corporation, Japan</em></td> 
+                    </tr>
+                    <tr>
+                        <td><strong>0.89403</strong></td><td>0.17433</td><td>0.99501</td><td>0.10298</td><td>0.48275</td><td>0.16975</td><td>189:16:03</td><td><strong>Riberry</strong><br/>Tuo Yu, Yuhang Wang, Yiran Zhao, Xin Ma‎, Xiaoxiao Wang, Yiwen Xu, Huajie Shao, Dipannita Dey, Honglei Zhuang, Huan Gui, Fangbo Tao<br/><em>University of Illinois at Urbana-Champaign, United States</em></td> 
+                    </tr>
+                </tbody>
+        </table>
+        <!--
+          <p>A more detailed analysis of the retrieval performances can be found in the overview paper accompanying this task.</p>
+          <p>
+            <a class="btn btn-default" href="http://www.uni-weimar.de/medien/webis/publications/papers/stein_2013h.pdf#page=11">Learn more »</a>
+          </p>
+        -->
+        </div>
+      </div>
+      
+
+      
+      <div class="panel panel-default" id="related-work">
+        <div class="panel-heading">Related Work</div>
+        <div class="panel-body">
+          <ul><li>
+		  Stefan Heindorf, Martin Potthast, Hannah Bast, Björn Buchhold, and Elmar Haussmann. <a href="https://cs.uni-paderborn.de/fileadmin/informatik/fg/dbis/Publikationen/2017/heindorf2017_WSDM.pdf">WSDM Cup 2017: Vandalism Detection and Triple Scoring</a>. In <i>Proceedings of the Tenth ACM International Conference on Web Search and Data Mining (WSDM 17)</i>, February 2017. ACM.
+          <a href="https://cs.uni-paderborn.de/fileadmin/informatik/fg/dbis/Publikationen/2017/heindorf2017_WSDM.pdf">[Paper]</a>
+          </li><li>
+          Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">Vandalism Detection in Wikidata</a>. In S. Mukhopadhyay, C. Zhai, E. Bertino, F. Crestani, J. Mostafa, J. Tang, L. Si, X. Zhou, Y. Chang, Y. Li, and P. Sondhi, editors, <i>Proceedings of the 25th ACM International Conference on Information and Knowledge Management (CIKM 16) </i>, pages 327-336, October 2016. ACM. ISBN 978-1-4503-4073-1
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM.pdf">[Paper]</a>
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2016/heindorf2016_CIKM_slides.pdf">[Slides]</a>
+          <a href="https://github.com/heindorf?tab=repositories">[Code]</a>
+          </li><li>
+          Stefan Heindorf, Martin Potthast, Benno Stein, and Gregor Engels. <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">Towards Vandalism Detection in Knowledge Bases: Corpus Construction and Analysis</a>. In Ricardo Baeza-Yates, Mounia Lalmas, Alistair Moffat, and Berthier Ribeiro-Neto, editors, <i>38th International ACM Conference on Research and Development in Information Retrieval (SIGIR 15)</i>, pages 831-834, August 2015. ACM. ISBN 978-1-4503-3621-5
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR.pdf">[Paper]</a>
+          <a href="https://is.uni-paderborn.de/fileadmin/Informatik/AG-Engels/Publikationen/2015/heindorf2015_SIGIR_poster.pdf">[Poster]</a>
+          <a href="https://webis.de/data/wdvc-15.html">[Corpus]</a>
+          </li><li>
+          Martin Potthast, Benno Stein, and Robert Gerling. <a href="https://webis.de/downloads/publications/papers/stein_2008c.pdf">Automatic Vandalism Detection in Wikipedia</a>. In Craig Macdonald et al, editors, <i>Advances in Information Retrieval. 30th European Conference on IR Research (ECIR 08)</i> volume 4956 of Lecture Notes in Computer Science, pages 663-668, Berlin Heidelberg New York, 2008. Springer. ISBN 978-3-540-78645-0. ISSN 0302-9743.
+          <a href="https://webis.de/downloads/publications/papers/stein_2008c.pdf">[Paper]</a>
+          <a href="https://webis.de/downloads/publications/posters/stein_2008c.pdf">[Poster]</a>
+          </li></ul>
+        </div>
+      </div>
+    </div> <!-- col -->
+  </div> <!-- row -->
+  
+  
+  <div id="task-committee" class="row" style="padding-top:30px;">
+    <div class="col-xs-12">
+      <h1 class="page-header">Task Chairs</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="https://www.uni-paderborn.de/person/11871/" target="_blank"><img src="img/stefan.jpg" class="img-rounded" alt="Stefan Heindorf"></a>
+        <p style="white-space:nowrap"><a href="https://www.uni-paderborn.de/person/11871/" target="_blank">Stefan Heindorf</a></p>
+        <p style="font-size:10pt">Paderborn University</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="https://webis.de/people.html" target="_blank"><img src="img/martin.jpg" class="img-rounded" alt="Martin Potthast"></a>
+        <p style="white-space:nowrap"><a href="https://webis.de/people.html" target="_blank">Martin Potthast</a></p>
+        <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Task Committee</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://is.uni-paderborn.de/" target="_blank"><img src="img/gregor.jpg" class="img-rounded" alt="Gregor Engels"></a>
+        <p style="white-space:nowrap"><a href="http://is.uni-paderborn.de/" target="_blank">Gregor Engels</a></p>
+        <p style="font-size:10pt">Paderborn University</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="thumbnail" style="text-align:center;">
+        <a href="http://www.webis.de" target="_blank"><img src="img/benno.jpg" class="img-rounded" alt="Benno Stein"></a>
+        <p style="white-space:nowrap"><a href="http://www.webis.de" target="_blank">Benno Stein</a></p>
+        <p style="font-size:10pt">Bauhaus-Universit&auml;t Weimar</p>
+      </div>
+    </div>
+  </div>
+  
+  
+</div> <!-- /container -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prettify.js"></script>
+<script src="js/jquery-datatables.min.js"></script>
+
+<script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()   
+    })
+  }(window.jQuery)
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-19597677-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!--<script type="text/javascript">
+$(document).ready(function() {
+    $('#results-table-vandalism-detection').DataTable(
+    {
+        searching: false,
+        paging: false
+    });
+});
+</script>
+-->
+
+</body>
+</html>
+
